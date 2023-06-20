@@ -309,86 +309,143 @@
         </section>
 
         <section data-state="slide_VoxelBasedMethod">
-				<p class="slide-title">Current methods for binding prediction</p>
-				<div class="slide_content_style1">
-					<table>
-						<tr>
-							<th class="content_subtitle" style="background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important; width:50%; text-align: center">Pros</th>
-							<th class="content_subtitle" style="background: radial-gradient(circle at center, #F3818180, #F3818130) !important; width:50%; text-align: center">Cons</th>
-						</tr>
-						<tr ><td class="content_subtitle" colspan="2">Graph-based method</td></tr>
-						<tr>
-							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important">
-								<ul>
-									<li class="tablecell_style1">Invariance to rotation and translation</li>
-									<li class="tablecell_style1">Lower computational cost</li>
-									<li class="tablecell_style1">Greater scalability and interpretability</li>
-								</ul>
-							</td>
-							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #F3818180, #F3818130) !important">
-								<ul>
-									<li class="tablecell_style1">Loss of precise spatial relationships</li>
-									<li class="tablecell_style1">Difficulty handling conformational changes</li>
-									<li class="tablecell_style1">Limited representation of molecular properties</li>
-								</ul>
-							</td>
-						</tr>
+			<p class="slide-title">Current methods for binding prediction</p>
+			<div class="slide_content_style1">
+				<table>
+					<tr>
+						<th class="content_subtitle" style="background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important; width:50%; text-align: center">Pros</th>
+						<th class="content_subtitle" style="background: radial-gradient(circle at center, #F3818180, #F3818130) !important; width:50%; text-align: center">Cons</th>
+					</tr>
+					<tr ><td class="content_subtitle" colspan="2">Graph-based method</td></tr>
+					<tr>
+						<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important">
+							<ul>
+								<li class="tablecell_style1">Invariance to rotation and translation</li>
+								<li class="tablecell_style1">Lower computational cost</li>
+								<li class="tablecell_style1">Greater scalability and interpretability</li>
+							</ul>
+						</td>
+						<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #F3818180, #F3818130) !important">
+							<ul>
+								<li class="tablecell_style1">Loss of precise spatial relationships</li>
+								<li class="tablecell_style1">Difficulty handling conformational changes</li>
+								<li class="tablecell_style1">Limited representation of molecular properties</li>
+							</ul>
+						</td>
+					</tr>
 
-						<tr><td class="content_subtitle" colspan="2">Voxel-based method</tr>
-						<tr>
-							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important">
-								<ul>
-									<li class="tablecell_style1">Straight-forward and intuitive structural representation</li>
-									<li class="tablecell_style1">Retains spatial configuration</li>
-									<li class="tablecell_style1">Incorporates multiple molecular properties</li>
-									<li class="tablecell_style1">Fine control over structural resolution</li>
-								</ul>
-							</td>
-							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #F3818180, #F3818130) !important">
-								<ul>
-									<li class="tablecell_style1">Sensitive to rotation and translation</li>
-									<li class="tablecell_style1">High computational complexity</li>
-									<li class="tablecell_style1">High demand for memory capacity</li>
-								</ul>
-							</td>
-						</tr>
-					</table>
-					<p class="highlight_style1">The degree of complexity of molecular patterns needs to be reduced</p>
-				</div>
-				<div  class="image-style1">
-					<img id="graphexample_img" src="/Example_GraphBasedMethod.png" style="height:40% !important"><br>
-					<p for="graphexample_img" class="content_subtitle">Fig1: Example graph-based method</p><br>
-					<img id="voxelexample_img" src="/Example_VoxelBasedMethod.png" style="height:40% !important; "><br>
-					<p for="voxelexample_img" class="content_subtitle">Fig2: Example voxel-based method</p>
-				</div>
+					<tr><td class="content_subtitle" colspan="2">Voxel-based method</tr>
+					<tr>
+						<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important">
+							<ul>
+								<li class="tablecell_style1">Straight-forward and intuitive structural representation</li>
+								<li class="tablecell_style1">Retains spatial configuration</li>
+								<li class="tablecell_style1">Incorporates multiple molecular properties</li>
+								<li class="tablecell_style1">Fine control over structural resolution</li>
+							</ul>
+						</td>
+						<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #F3818180, #F3818130) !important">
+							<ul>
+								<li class="tablecell_style1">Sensitive to rotation and translation</li>
+								<li class="tablecell_style1">High computational complexity</li>
+								<li class="tablecell_style1">High demand for memory capacity</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				<p class="highlight_style1">The degree of complexity of molecular patterns needs to be reduced</p>
+			</div>
+			<div  class="image-style1">
+				<img id="graphexample_img" src="/Example_GraphBasedMethod.png" style="height:40% !important"><br>
+				<p for="graphexample_img" class="content_subtitle">Fig1: Example graph-based method</p><br>
+				<img id="voxelexample_img" src="/Example_VoxelBasedMethod.png" style="height:40% !important; "><br>
+				<p for="voxelexample_img" class="content_subtitle">Fig2: Example voxel-based method</p>
+			</div>
 
-				<p class="reference_style">Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.<br>Duvenaud, David K., et al. "Convolutional networks on graphs for learning molecular fingerprints." Advances in neural information processing systems 28 (2015).<br>Li, Yanjun, et al. "DeepAtom: A framework for protein-ligand binding affinity prediction." 2019 IEEE International Conference on Bioinformatics and Biomedicine (BIBM). IEEE, 2019.</p>
-			</section>
+			<p class="reference_style">Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.<br>Duvenaud, David K., et al. "Convolutional networks on graphs for learning molecular fingerprints." Advances in neural information processing systems 28 (2015).<br>Li, Yanjun, et al. "DeepAtom: A framework for protein-ligand binding affinity prediction." 2019 IEEE International Conference on Bioinformatics and Biomedicine (BIBM). IEEE, 2019.</p>
+		</section>
 
-            <section data-state="slide_common_methods">
-				<p class="slide-title">Current method for 3D structure featurization</p>
-				<div class="slide_content_style1">
-					<p class="slide_item_style1">1. Ligand binding is primarily determined by local atomic configurations</p>
-					<p class="slide_item_style1">2. Reduce the structural complexity of the binding pocket </p>
-					<p class="slide_item_style1">by decomposing it into smaller "molecule blocks"</p>
-					<p class="slide_item_style1">3. Molecular properties are mapped to each grid points</p>
+		<section data-state="slide_common_methods">
+			<p class="slide-title">Current method for 3D structure featurization</p>
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. Ligand binding is primarily determined by local atomic configurations</p>
+				<p class="slide_item_style1">2. Reduce the structural complexity of the binding pocket </p>
+				<p class="slide_item_style1">by decomposing it into smaller "molecule blocks"</p>
+				<p class="slide_item_style1">3. Molecular properties are mapped to each grid points</p>
 
 <!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">1) Continuous space to discrete space</p>-->
 <!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">2)  space to discrete space</p>-->
 <!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 15px !important; ">E.g. a 6*6*6 Å cuboid contains a maximum of 25 atoms</p>-->
 
 
-					<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
-					<p class="content_subtitle"><span class="highlight_style1" style="line-height: 40px">Objective: </span><br><span class="slide_item_style1" style="margin-bottom: 10px">Develop a framework to preprocess molecular dynamics trajectories and prepare input data for voxel-based binding affinity prediction.</span><br> </p>
-				</div>
+				<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
+				<p class="content_subtitle"><span class="highlight_style1" style="line-height: 40px">Objective: </span><br><span class="slide_item_style1" style="margin-bottom: 10px">Develop a framework to preprocess molecular dynamics trajectories and prepare input data for voxel-based binding affinity prediction.</span><br> </p>
+			</div>
 
 
-				<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
-					<div id="slide_RefPDBAndBox" style="width: 100%; height: 100%"></div>
-					<p class="content_subtitle" style="font-size: 12px"><span style="font-weight: bold;">Stage1:</span> Protein(gray cartoon); ligand and pocket(green sticks), bounding box(light green cuboid), grid points(red dots) and molecule blocks (purple cuboids)</p>
-				</div>
+			<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
+				<div id="slide_RefPDBAndBox" style="width: 100%; height: 100%"></div>
+				<p class="content_subtitle" style="font-size: 12px"><span style="font-weight: bold;">Stage1:</span> Protein(gray cartoon); ligand and pocket(green sticks), bounding box(light green cuboid), grid points(red dots) and molecule blocks (purple cuboids)</p>
+			</div>
 
-			</section>
+		</section>
+
+
+		<section data-state="slide_PackageArchetecture">
+			<p class="slide-title">Feature database construction </p>
+			<!--Attach the representation of the Package Archetecture-->
+			<div class="gallery" style="top:30% !important;">
+				<figure class="gallery-item PackageArchetecture image-gray">
+					<img id="PackageArchetecture_fig1" style="height: 200px !important; ">
+					<figcaption for="PackageArchetecture_fig1">Fig1: Batch MD simulation using the ACGui</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray">
+					<img id="PackageArchetecture_fig2">
+					<figcaption for="PackageArchetecture_fig2">Fig2: Automated pipeline for trajectory decomposition</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray">
+					<img id="PackageArchetecture_fig3">
+					<figcaption for="PackageArchetecture_fig3">Fig3: Feature generation, representation, and storage</figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section data-state="slide_PackageArchetecture2">
+			<p class="slide-title">Decomposing binding pockets and predicting affinity </p>
+			<div class="gallery" style="top:30% !important;">
+				<figure class="gallery-item PackageArchetecture image-gray" >
+					<img id="PackageArchetecture_fig4">
+					<figcaption for="PackageArchetecture_fig4">Fig1: An example binding pose to predict</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray" >
+					<img id="PackageArchetecture_fig5">
+					<figcaption for="PackageArchetecture_fig5">Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
+					<img id="PackageArchetecture_fig6" style="height: 100% !important; width: 100%" >
+					<figcaption>Fig3: Affinity prediction </figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section data-state="slide_ICPRegistration">
+			<p class="slide-title">Transformation matrix generation</p>
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">Iterative closest point (ICP) is a widely-used method for aligning two sets of points or point clouds</p>
+				<p class="slide_item_style1">By inputting a target point set and a source point cloud, the output is a refined transformation matrix that aligns these two point clouds</p>
+				<p class="slide_item_style1">Two main steps are iterated during point cloud registration: </p>
+				<p class="slide_item_style1" style="padding-left: 20px; ">1. Find correspondence set \(\kappa = \{(p,q)\}\) from target points \(P\), and source point cloud \(Q\) </p>
+				<p class="slide_item_style1" style="padding-left: 20px; ">2. Update the transformation matrix by minimizing an objective function. </p>
+				<p class="slide_item_style1">For example, the objective function of point-to-point ICP algorithm is \(E(T) = \sum_{(p,q)\in\kappa}{\left\|p-Tq \right\|^2}\) </p>
+			</div>
+
+			<div class="image-style1">
+				<img  style="height:80%  !important;; width: auto !important; height:auto" src="https://camo.githubusercontent.com/f28d342e5dc26c660ba6184a1265fd55cf69607e2ea4cadb11919a2d8ef63491/68747470733a2f2f6361732d61737369676e6d656e742e72656164746865646f63732e696f2f656e2f6c61746573742f5f696d616765732f6963705f616e696d6174696f6e2e676966">
+				<p class="content_subtitle">Fig. A visual demonstration of how the ICP algorithm aligns two point clouds</p>
+			</div>
+
+			<p class="reference_style">Besl, Paul J., and Neil D. McKay. "Method for registration of 3-D shapes." Sensor fusion IV: control paradigms and data structures. Vol. 1611. Spie, 1992.<br>https://github.com/yassram/iterative-closest-point</p>
+		</section>
 
 
         <!--<section data-state="slide_">-->
@@ -463,7 +520,9 @@
             <ul class="slide_content_style1">
                 <li>Amedeo Caflisch</li>
                 <li>Andreas Vitalis</li>
-                <li>ACGui Developers: Fabian Radler, Cassiano Langini</li>
+                <li>ACGui Developers: </li>
+				<li>Fabian Radler</li>
+				<li>Cassiano Langini</li>
                 <li>All the members in Caflisch group</li>
             </ul>
             <div class="slide_content_style1" style="width:50%">
@@ -559,7 +618,6 @@
         const material = new THREE.MeshStandardMaterial({vertexColors: true, flatShading: true});
         const mesh = new THREE.Mesh(geometry, material);
         geometry.computeBoundingBox();
-        geometry.center()
         const boundingBox = geometry.boundingBox;
         const center = boundingBox.getCenter(new THREE.Vector3());
         mesh.position.set(-center.x, -center.y, -center.z);
@@ -704,16 +762,80 @@
     async function renderSymbol(obj_list) {
         if (! window.SetIcon) {
             scene_info = initPLYObject("symbol_fig", repo_url+"symbol_mesh.ply").then(function(ret){
+
                 scene_info = addPLYtoStage(repo_url+"symbol_surface.ply", ret[0], ret[1],ret[2], ret[3], [0,0,0]).then(function (ret){
                     var scene = ret[0]
                     var renderer = ret[1]
                     var camera = ret[2]
+					let thecenter = [0,0,0]
+					let mesh_count = 0
+					scene.traverse(function(meshobject){
+						if (meshobject instanceof THREE.Mesh) {
+							tmpcenter = meshobject.geometry.boundingBox.getCenter(new THREE.Vector3());
+							thecenter[0] += tmpcenter.x
+							thecenter[1] += tmpcenter.y
+							thecenter[2] += tmpcenter.z
+							mesh_count += 1
+						}
+					})
+					thecenter= thecenter.map(item => item/mesh_count);
+					console.log("The center is ==>: ", thecenter)
+
+
+					let counter=0
+					scene.traverse(function(meshobject){
+						if (meshobject instanceof THREE.Mesh) {
+							centerx = meshobject.position
+							// centerx = meshobject.geometry.boundingBox.getCenter(new THREE.Vector3());
+							console.log("The center is before translate: ", centerx)
+							meshobject.translateX(thecenter[0])
+							meshobject.translateY(thecenter[1])
+							meshobject.translateZ(thecenter[2])
+							meshobject.geometry.computeBoundingBox();
+							centerx = meshobject.position
+							console.log("The center is after translate: ", centerx)
+							// camera.position.set(meshobject.position.x, meshobject.position.y, meshobject.position.z+15);
+							// camera.lookAt(meshobject.position)
+							// camera.updateProjectionMatrix()
+							// counter += 1;
+						}
+					})
+					scene.traverse(function(meshobject){
+						if (meshobject instanceof THREE.Mesh) {
+							console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
+							// meshobject.position.x += thecenter.x;
+							// meshobject.position.y += thecenter.y;
+							// meshobject.position.z += thecenter.z;
+							console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
+							thecenter = meshobject.geometry.boundingBox.getCenter(new THREE.Vector3());
+							console.log("The center is: ", thecenter)
+							console.log(meshobject.rotation)
+						}
+					})
+
+					// camera.position.set(thecenter.x, thecenter.y, thecenter.z+5);
+					// camera.position.set(0, 0, 20);
+					// camera.lookAt(0,0,0);
+					// camera.lookAt(thecenter.x, thecenter.y, thecenter.z);
+
+
                     function animate() {
                         requestAnimationFrame(animate);
                         const time = (performance.now() * 0.0005) % 3 + 0.5;
+						let c = 0;
                         scene.traverse(function(meshobject) {
-                            meshobject.rotation.z += time*0.005;
-                            meshobject.rotation.y += time*0.004;
+							if (meshobject instanceof THREE.Mesh) {
+								meshobject.rotation.z = 0.05;
+								meshobject.rotation.y += time*0.004;
+
+								if (c==1){
+									meshobject.material.color = new THREE.Color(0x71EFA3);
+									meshobject.material.transparent = true;
+									meshobject.material.opacity = 0.75;
+									console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
+								}
+								c+=1
+							}
                         });
                         renderer.render(scene, camera);
                     }
