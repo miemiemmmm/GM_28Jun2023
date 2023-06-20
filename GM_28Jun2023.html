@@ -365,17 +365,19 @@
 				<p class="reference_style">Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.<br>Duvenaud, David K., et al. "Convolutional networks on graphs for learning molecular fingerprints." Advances in neural information processing systems 28 (2015).<br>Li, Yanjun, et al. "DeepAtom: A framework for protein-ligand binding affinity prediction." 2019 IEEE International Conference on Bioinformatics and Biomedicine (BIBM). IEEE, 2019.</p>
 			</section>
 
-            <section data-state="slide_PrincipleHypothesis">
-				<p class="slide-title">Principle hypothesis and objective</p>
+            <section data-state="slide_common_methods">
+				<p class="slide-title">Current method for 3D structure featurization</p>
 				<div class="slide_content_style1">
 					<p class="slide_item_style1">1. Ligand binding is primarily determined by local atomic configurations</p>
-					<p class="slide_item_style1" style="padding-bottom: 10px !important; ">2. Reduce the complexity of the binding pocket by decomposing it into smaller "molecule blocks"</p>
+					<p class="slide_item_style1">2. Reduce the structural complexity of the binding pocket </p>
+					<p class="slide_item_style1">by decomposing it into smaller "molecule blocks"</p>
+					<p class="slide_item_style1">3. Molecular properties are mapped to each grid points</p>
 
 <!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">1) Continuous space to discrete space</p>-->
 <!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">2)  space to discrete space</p>-->
-					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 15px !important; ">E.g. a 6*6*6 Å cuboid contains a maximum of 25 atoms</p>
+<!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 15px !important; ">E.g. a 6*6*6 Å cuboid contains a maximum of 25 atoms</p>-->
 
-					<p class="slide_item_style1">3. Static atomic configurations are mapped to dynamic behavior</p>
+
 					<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
 					<p class="content_subtitle"><span class="highlight_style1" style="line-height: 40px">Objective: </span><br><span class="slide_item_style1" style="margin-bottom: 10px">Develop a framework to preprocess molecular dynamics trajectories and prepare input data for voxel-based binding affinity prediction.</span><br> </p>
 				</div>
@@ -408,6 +410,52 @@
             </div>
             <p class="reference_style">This is a template reference.</p>
         </section>
+
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Augmenting prediction with molecular dynamics data</p>
+				<img>
+			</div>
+		</section>
+
+
+
+		<section data-state="slide_KeyChildModule">
+			<p class="slide-title">Development of key sub-systems</p>
+			<div class="slide_content_style1">
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Training material:</span> Trajectories of complexes selected from PDBBind </p>
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Trajectory loader:</span> Automation of trajectory array</p>
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Molecule-block generator:</span> Identification of sub-block patterns</p>
+				<p class="slide_item_style1"><span style="color:#C58940; font-weight: bold">Featurizer:</span> Transformation of raw trajectories into feature vectors</p>
+				<p class="slide_item_style1"><span style="color:#C58940; font-weight: bold">Input structure processor:</span> Feature retrieval and pocket reassembly</p>
+				<p class="slide_item_style1"><span style="font-weight: bold">Database depositor:</span> Feature storage, retrieval and comparison</p>
+				<p class="slide_item_style1" style="padding-left: 40px"><span style="color:#285430; font-weight: bold">Temporary solution:</span> HDF (Hierarchical Data Format) file</p>
+				<p class="slide_item_style1"><span style="font-weight: bold">Neural network:</span> Prediction of the binding affinity</p>
+			</div>
+			<div class="image-style1">
+				<figure class="gallery-item gallery-item_style2" style="width: 100% !important;">
+					<img id="img_childmodules" style="width: 100% !important; height: auto; margin-bottom: 50px; ">
+					<!--						<img id="img_childmodules" style="{width: 100% !important; height: auto; margin-bottom: 50px} :hover {transform: scale(1.5) !important} ">-->
+					<figcaption class="content_subtitle" for="img_childmodules">Fig1. Information flow of trajectory features and the organization of corresponding sub-systems</figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section data-state="slide_FutureWork">
+			<p class="slide-title">Future Work</p>
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. Integrate the viewpoint component into the molecule block embedding algorithm</p>
+				<p class="slide_item_style1">2. Build a feature database for molecule blocks (16 examples in Stage1)</p>
+				<p class="slide_item_style1">3. Develop an efficient algorithm for aligning the target molecule block with retrieved sub-blocks</p>
+				<p class="slide_item_style1">4. Create additional features for feature generation </p>
+				<p class="slide_item_style1">5. Train a voxel-based machine learning model for binding affinity prediction</p>
+			</div>
+
+			<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
+				<div id="final_ply_display" style="width: 100%; height: 100%"> </div>
+				<p class="content_subtitle">Stage1: 3D visualization of 16 example molecule blocks</p>
+			</div>
+		</section>
 
 
         <section data-state="Page_Acknowledgement">
@@ -705,7 +753,7 @@
         imgdiv.src = uzh_logo_e_pos_web_main;
         document.body.appendChild(imgdiv);
 
-        // image_section_break= await loadImageBase64(repo_url+"section_break.png");
+        image_section_break= await loadImageBase64(repo_url+"section_break.png");
         // image_symbol = await loadImageBase64(repo_url+"symbol.png");
         // image1 = await loadImageBase64(repo_url+"im1.png");
         // image2 = await loadImageBase64(repo_url+"im2.png");
@@ -724,7 +772,7 @@
     });
 
     Reveal.addEventListener('slidechanged', function(event) {
-        if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_PrincipleHypothesis') {
+        if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_common_methods') {
             if ( !window.hasOwnProperty("voxel_box_set") ) {
                 init3DMolObject("slide_RefPDBAndBox", repo_url+"C209CsDJQucZ_Protein2.pdb")
                     .then(viewer=>{
@@ -734,7 +782,7 @@
                         viewer.setStyle(ligandSelection, {stick: {colorscheme:"greenCarbon"}, cartoon: {}});
                         // Add Grid points
                         const center = [22.0947246 , 36.49708133, 21.81810805];
-                        const ls = [16, 16, 16];
+                        const ls = [24, 24, 24];
                         const dims = [16, 16, 16];
                         renderGridPoints(viewer, center, ls, dims);
                         viewer.addBox({center:{x:center[0], y:center[1] ,z:center[2]},
@@ -766,6 +814,20 @@
                         window.voxel_box_set = true;
                         window.viewer_RefPDBAndBox = viewer;
                         reset_canvas("slide_RefPDBAndBox", window.viewer_RefPDBAndBox)
+
+						// let angle = 0;
+						// var animate;
+						// animate = setInterval(function() {
+						// 	if (event.currentSlide.getAttribute('data-state') == 'slide_common_methods') {
+						// 		angle += 1;  // Increment the angle
+						// 		if (angle >= 360) angle = 0;  // Reset after a full rotation
+						// 		viewer.rotate(1, {x: 1, y: 1, z: 0});
+						// 		viewer.render();
+						// 	} else {
+						// 		clearInterval(animate)
+						// 	}
+						// }, 100);
+
                     })
             } else {
                 console.log(window.viewer_RefPDBAndBox)
