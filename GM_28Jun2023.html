@@ -295,7 +295,7 @@
 
         <section data-state="slide_OutlinePage">
             <p class="slide-title">Outline</p>
-            <div class="slide_content_style1">
+            <div class="slide_content_style1" style="width: 100% !important;">
                 <p class="slide_item_style1" style="padding-left: 10%; ">1. Introduction </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">2. Data-driven method to re-construct the binding pocket landscape </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">3. Predicting binding affintiy with neural network </p>
@@ -304,9 +304,90 @@
             </div>
 
             <div class="image-style1">
-                <img id="outline_bgimage" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); height: 700px; width: auto; filter: blur(5px);" >
+                <img id="outline_bgimage" src="/interval_background.png" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); height: 700px; width: auto; filter: blur(5px);" >
             </div>
         </section>
+
+        <section data-state="slide_VoxelBasedMethod">
+				<p class="slide-title">Current methods for binding prediction</p>
+				<div class="slide_content_style1">
+					<table>
+						<tr>
+							<th class="content_subtitle" style="background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important; width:50%; text-align: center">Pros</th>
+							<th class="content_subtitle" style="background: radial-gradient(circle at center, #F3818180, #F3818130) !important; width:50%; text-align: center">Cons</th>
+						</tr>
+						<tr ><td class="content_subtitle" colspan="2">Graph-based method</td></tr>
+						<tr>
+							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important">
+								<ul>
+									<li class="tablecell_style1">Invariance to rotation and translation</li>
+									<li class="tablecell_style1">Lower computational cost</li>
+									<li class="tablecell_style1">Greater scalability and interpretability</li>
+								</ul>
+							</td>
+							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #F3818180, #F3818130) !important">
+								<ul>
+									<li class="tablecell_style1">Loss of precise spatial relationships</li>
+									<li class="tablecell_style1">Difficulty handling conformational changes</li>
+									<li class="tablecell_style1">Limited representation of molecular properties</li>
+								</ul>
+							</td>
+						</tr>
+
+						<tr><td class="content_subtitle" colspan="2">Voxel-based method</tr>
+						<tr>
+							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #95E1D380, #95E1D330) !important">
+								<ul>
+									<li class="tablecell_style1">Straight-forward and intuitive structural representation</li>
+									<li class="tablecell_style1">Retains spatial configuration</li>
+									<li class="tablecell_style1">Incorporates multiple molecular properties</li>
+									<li class="tablecell_style1">Fine control over structural resolution</li>
+								</ul>
+							</td>
+							<td style="padding-left:15px; height: 90px; background: radial-gradient(circle at center, #F3818180, #F3818130) !important">
+								<ul>
+									<li class="tablecell_style1">Sensitive to rotation and translation</li>
+									<li class="tablecell_style1">High computational complexity</li>
+									<li class="tablecell_style1">High demand for memory capacity</li>
+								</ul>
+							</td>
+						</tr>
+					</table>
+					<p class="highlight_style1">The degree of complexity of molecular patterns needs to be reduced</p>
+				</div>
+				<div  class="image-style1">
+					<img id="graphexample_img" src="/Example_GraphBasedMethod.png" style="height:40% !important"><br>
+					<p for="graphexample_img" class="content_subtitle">Fig1: Example graph-based method</p><br>
+					<img id="voxelexample_img" src="/Example_VoxelBasedMethod.png" style="height:40% !important; "><br>
+					<p for="voxelexample_img" class="content_subtitle">Fig2: Example voxel-based method</p>
+				</div>
+
+				<p class="reference_style">Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.<br>Duvenaud, David K., et al. "Convolutional networks on graphs for learning molecular fingerprints." Advances in neural information processing systems 28 (2015).<br>Li, Yanjun, et al. "DeepAtom: A framework for protein-ligand binding affinity prediction." 2019 IEEE International Conference on Bioinformatics and Biomedicine (BIBM). IEEE, 2019.</p>
+			</section>
+
+            <section data-state="slide_PrincipleHypothesis">
+				<p class="slide-title">Principle hypothesis and objective</p>
+				<div class="slide_content_style1">
+					<p class="slide_item_style1">1. Ligand binding is primarily determined by local atomic configurations</p>
+					<p class="slide_item_style1" style="padding-bottom: 10px !important; ">2. Reduce the complexity of the binding pocket by decomposing it into smaller "molecule blocks"</p>
+
+<!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">1) Continuous space to discrete space</p>-->
+<!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">2)  space to discrete space</p>-->
+					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 15px !important; ">E.g. a 6*6*6 Å cuboid contains a maximum of 25 atoms</p>
+
+					<p class="slide_item_style1">3. Static atomic configurations are mapped to dynamic behavior</p>
+					<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
+					<p class="content_subtitle"><span class="highlight_style1" style="line-height: 40px">Objective: </span><br><span class="slide_item_style1" style="margin-bottom: 10px">Develop a framework to preprocess molecular dynamics trajectories and prepare input data for voxel-based binding affinity prediction.</span><br> </p>
+				</div>
+
+
+				<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
+					<div id="slide_RefPDBAndBox" style="width: 100%; height: 100%"></div>
+					<p class="content_subtitle" style="font-size: 12px"><span style="font-weight: bold;">Stage1:</span> Protein(gray cartoon); ligand and pocket(green sticks), bounding box(light green cuboid), grid points(red dots) and molecule blocks (purple cuboids)</p>
+				</div>
+
+			</section>
+
 
         <!--<section data-state="slide_">-->
         <!--    <p class="slide-title">This is a Template Slide for Demonstration</p>-->
@@ -318,13 +399,24 @@
         <!--    <p class="reference_style">This is a template reference.</p>-->
         <!--</section>-->
 
+        <section data-state="slide_current_study">
+            <p class="slide-title">This is a Template Slide for Demonstration</p>
+            <div class="slide_content_style1">
+                <p>This is a Template Main Context1</p>
+                <p>This is a Template Main Context2</p>
+                <p>This is a Template Main Context3</p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
+
+
         <section data-state="Page_Acknowledgement">
             <p class="slide-title">Acknowledgement</p>
             <ul class="slide_content_style1">
-                <li>People 1</li>
-                <li>People 2</li>
-                <li>People 3</li>
-                <li>People 4</li>
+                <li>Amedeo Caflisch</li>
+                <li>Andreas Vitalis</li>
+                <li>ACGui Developers: Fabian Radler, Cassiano Langini</li>
+                <li>All the members in Caflisch group</li>
             </ul>
             <div class="slide_content_style1" style="width:50%">
             </div>
@@ -419,6 +511,7 @@
         const material = new THREE.MeshStandardMaterial({vertexColors: true, flatShading: true});
         const mesh = new THREE.Mesh(geometry, material);
         geometry.computeBoundingBox();
+        geometry.center()
         const boundingBox = geometry.boundingBox;
         const center = boundingBox.getCenter(new THREE.Vector3());
         mesh.position.set(-center.x, -center.y, -center.z);
@@ -479,6 +572,7 @@
         console.log("Loading the plyfile", fileurl)
         const plycontent = atob(await getGithubContents(fileurl));
         mesh = loadPLYMesh(plycontent, scene, camera, light);
+
         scene.add(mesh);
         camera.position.set(0, 0, 20);
         camera.near = 0.1;
@@ -486,12 +580,12 @@
         camera.updateProjectionMatrix();
 
         // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-            renderer.render(scene, camera);
-        }
-        console.log("Do the animation")
-        animate();
+        // function animate() {
+        //     requestAnimationFrame(animate);
+        //     renderer.render(scene, camera);
+        // }
+        // console.log("Do the animation")
+        // animate();
         return [scene, renderer, camera, light]
     }
 
@@ -560,76 +654,25 @@
     }
 
     async function renderSymbol(obj_list) {
-        function icon_init(theobj) {
-            let objdiv
-            objdiv = document.getElementById(theobj);
-            renderer = new THREE.WebGLRenderer();
-            container = document.createElement('div');
-
-            objdiv.appendChild(container);
-            camera = new THREE.PerspectiveCamera(50, objdiv.clientWidth / objdiv.clientHeight, 1, 5000);
-            camera.position.z = 1400;
-            scene = new THREE.Scene();
-            const circleGeometry = new THREE.CircleGeometry(1, 6);
-
-            geometry = new THREE.InstancedBufferGeometry();
-            geometry.index = circleGeometry.index;
-            geometry.attributes = circleGeometry.attributes;
-            const particleCount = 75000;
-            const translateArray = new Float32Array(particleCount * 3);
-            for (let i = 0, i3 = 0, l = particleCount; i < l; i++, i3 += 3) {
-              translateArray[i3 + 0] = Math.random() * 2 - 1;
-              translateArray[i3 + 1] = Math.random() * 2 - 1;
-              translateArray[i3 + 2] = Math.random() * 2 - 1;
-            }
-
-            geometry.setAttribute('translate', new THREE.InstancedBufferAttribute(translateArray, 3));
-            material = new THREE.RawShaderMaterial({
-              uniforms: {
-                'map': {value: new THREE.TextureLoader().load(circle)},
-                'time': {value: 0.0}
-              },
-              vertexShader: document.getElementById('vshader').textContent,
-              fragmentShader: document.getElementById('fshader').textContent,
-              depthTest: true,
-              depthWrite: true
-            });
-            mesh = new THREE.Mesh(geometry, material);
-            mesh.scale.set(500, 500, 500);
-            scene.add(mesh);
-            const controls = new OrbitControls(camera, renderer.domElement);
-            renderer.setSize(objdiv.clientWidth, objdiv.clientHeight);
-            container.appendChild(renderer.domElement);
-            renderer.setClearColor("#" + scene_bgcolor);
-            return true;
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            const time = performance.now() * 0.0005;
-            material.uniforms['time'].value = time;
-            mesh.rotation.x = time * 0.2;
-            mesh.rotation.y = time * 0.4;
-            renderer.render(scene, camera);
-        }
-
         if (! window.SetIcon) {
-            console.log("Here set the symbol box")
-            for (let [idx, theobj] of obj_list.entries()) {
-                console.log(theobj, " Index is ", idx)
-                // const lineset_string = atob(await getGithubContents("symbol_lineset.ply"));
-                const mesh_string = atob(await getGithubContents(repo_url+"symbol_mesh.ply"));
-                console.log(mesh_string)
-                // initPLYObject(theobj, lineset_string, mesh_string);
-                // icon_init(theobj)
-            }
-        //     .then(() => {
-        //   animate();
-        // })
-        // icon_init(theobj)
-        // console.log(window.SetIcon)
-        // window.SetIcon = true
-        // animate();
+            scene_info = initPLYObject("symbol_fig", repo_url+"symbol_mesh.ply").then(function(ret){
+                scene_info = addPLYtoStage(repo_url+"symbol_surface.ply", ret[0], ret[1],ret[2], ret[3], [0,0,0]).then(function (ret){
+                    var scene = ret[0]
+                    var renderer = ret[1]
+                    var camera = ret[2]
+                    function animate() {
+                        requestAnimationFrame(animate);
+                        const time = (performance.now() * 0.0005) % 3 + 0.5;
+                        scene.traverse(function(meshobject) {
+                            meshobject.rotation.z += time*0.005;
+                            meshobject.rotation.y += time*0.004;
+                        });
+                        renderer.render(scene, camera);
+                    }
+                    animate()
+                });
+            });
+            window.SetIcon = true
         }
     }
 
@@ -650,8 +693,9 @@
 
     var uzh_logo_e_pos_web_main
     var image_section_break
-    var image_symbol
-    var image1, image2, image3
+
+    // var image_symbol
+    // var image1, image2, image3
 
     (async ()=>{
         // Get UZH logo, presentation symbol and set up the logo for the first page
@@ -661,11 +705,11 @@
         imgdiv.src = uzh_logo_e_pos_web_main;
         document.body.appendChild(imgdiv);
 
-        image_section_break= await loadImageBase64(repo_url+"section_break.png");
-        image_symbol = await loadImageBase64(repo_url+"symbol.png");
-        image1 = await loadImageBase64(repo_url+"im1.png");
-        image2 = await loadImageBase64(repo_url+"im2.png");
-        image3 = await loadImageBase64(repo_url+"im3.png");
+        // image_section_break= await loadImageBase64(repo_url+"section_break.png");
+        // image_symbol = await loadImageBase64(repo_url+"symbol.png");
+        // image1 = await loadImageBase64(repo_url+"im1.png");
+        // image2 = await loadImageBase64(repo_url+"im2.png");
+        // image3 = await loadImageBase64(repo_url+"im3.png");
     })()
 
 
@@ -678,6 +722,60 @@
         // Set the transition style to slide
         transition: 'convex',
     });
+
+    Reveal.addEventListener('slidechanged', function(event) {
+        if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_PrincipleHypothesis') {
+            if ( !window.hasOwnProperty("voxel_box_set") ) {
+                init3DMolObject("slide_RefPDBAndBox", repo_url+"C209CsDJQucZ_Protein2.pdb")
+                    .then(viewer=>{
+                        // Set styles for the protein structure
+                        viewer.setStyle({}, { cartoon:{color: "gray"} } );
+                        var ligandSelection = {resn: 'LIG',  byres:true, expand:5};
+                        viewer.setStyle(ligandSelection, {stick: {colorscheme:"greenCarbon"}, cartoon: {}});
+                        // Add Grid points
+                        const center = [22.0947246 , 36.49708133, 21.81810805];
+                        const ls = [16, 16, 16];
+                        const dims = [16, 16, 16];
+                        renderGridPoints(viewer, center, ls, dims);
+                        viewer.addBox({center:{x:center[0], y:center[1] ,z:center[2]},
+                            dimensions: {w:ls[0], h:ls[1], d:ls[2]},
+                            color:'#adf7d1',
+                            opacity:0.65
+                        })
+                        const centers = [
+                            [34.88775634765625, 38.64504623413086, 18.944740295410156], [30.713611602783203, 42.00475311279297, 19.096406936645508], [28.294567108154297, 44.30536651611328, 17.057537078857422],
+                            [27.101287841796875, 45.99188232421875, 21.745433807373047], [21.747516632080078, 46.85906219482422, 26.61472511291504], [19.334928512573242, 44.54450225830078, 35.28935623168945],
+                            [16.974706649780273, 41.76900100708008, 31.347522735595703], [17.396854400634766, 37.726806640625, 27.266767501831055]
+                        ]
+                        const block_ls = [6,6,6]
+                        for (var i=0; i < centers.length; i++){
+                            viewer.addBox({center:{x:centers[i][0], y:centers[i][1] ,z:centers[i][2]},
+                                dimensions: {w:block_ls[0], h:block_ls[1], d:block_ls[2]},
+                                color:'#8971d0',
+                                opacity:1,
+                            })
+                            viewer.addBox({center:{x:centers[i][0], y:centers[i][1] ,z:centers[i][2]},
+                                dimensions: {w:block_ls[0]+0.5, h:block_ls[1]+0.5, d:block_ls[2]+0.5},
+                                color:'black',
+                                opacity:0.6
+                            })
+                        }
+                        viewer.rotate(195, {x: 0, y: 1, z: 0});
+                        viewer.render();
+
+                        window.voxel_box_set = true;
+                        window.viewer_RefPDBAndBox = viewer;
+                        reset_canvas("slide_RefPDBAndBox", window.viewer_RefPDBAndBox)
+                    })
+            } else {
+                console.log(window.viewer_RefPDBAndBox)
+                window.viewer_RefPDBAndBox.render()
+                reset_canvas("slide_RefPDBAndBox", window.viewer_RefPDBAndBox)
+            }
+        }
+    })
+
+
 
     /////////////////////////////////////////////
     ////// Auxiliary and onchange functions /////
@@ -712,17 +810,17 @@
 
         var symbol_fig = document.querySelector( '.symbol_fig' );
         if ( symbol_fig ) {
-            symbol_fig.src = image_symbol
+            // symbol_fig.src = image_symbol
         } else {
-            var symboldiv = document.createElement( 'img' );
+            var symboldiv = document.createElement( 'div' );
             symboldiv.classList.add( 'symbol_fig' );
-            symboldiv.src = image_symbol;
+            symboldiv.id = "symbol_fig";
+            // symboldiv.src = image_symbol;
+            symboldiv.style.width  = '120px';   // Set the width
+            symboldiv.style.height = '120px';
             symboldiv.style.zIndex = 0
             document.body.appendChild(symboldiv)
-        }
-        var symbol_fig = document.querySelector( '.symbol_fig' );
-        if ( symbol_fig ) {
-            renderSymbol(["abc", "def", "ghi"])
+            renderSymbol()
         }
 
 
