@@ -559,13 +559,87 @@
         // $("#"+parent_div+" canvas").css({"position": "relative", "width":"100%", "height": "100%"})
     }
 
+    async function renderSymbol(obj_list) {
+        function icon_init(theobj) {
+            let objdiv
+            objdiv = document.getElementById(theobj);
+            renderer = new THREE.WebGLRenderer();
+            container = document.createElement('div');
+
+            objdiv.appendChild(container);
+            camera = new THREE.PerspectiveCamera(50, objdiv.clientWidth / objdiv.clientHeight, 1, 5000);
+            camera.position.z = 1400;
+            scene = new THREE.Scene();
+            const circleGeometry = new THREE.CircleGeometry(1, 6);
+
+            geometry = new THREE.InstancedBufferGeometry();
+            geometry.index = circleGeometry.index;
+            geometry.attributes = circleGeometry.attributes;
+            const particleCount = 75000;
+            const translateArray = new Float32Array(particleCount * 3);
+            for (let i = 0, i3 = 0, l = particleCount; i < l; i++, i3 += 3) {
+              translateArray[i3 + 0] = Math.random() * 2 - 1;
+              translateArray[i3 + 1] = Math.random() * 2 - 1;
+              translateArray[i3 + 2] = Math.random() * 2 - 1;
+            }
+
+            geometry.setAttribute('translate', new THREE.InstancedBufferAttribute(translateArray, 3));
+            material = new THREE.RawShaderMaterial({
+              uniforms: {
+                'map': {value: new THREE.TextureLoader().load(circle)},
+                'time': {value: 0.0}
+              },
+              vertexShader: document.getElementById('vshader').textContent,
+              fragmentShader: document.getElementById('fshader').textContent,
+              depthTest: true,
+              depthWrite: true
+            });
+            mesh = new THREE.Mesh(geometry, material);
+            mesh.scale.set(500, 500, 500);
+            scene.add(mesh);
+            const controls = new OrbitControls(camera, renderer.domElement);
+            renderer.setSize(objdiv.clientWidth, objdiv.clientHeight);
+            container.appendChild(renderer.domElement);
+            renderer.setClearColor("#" + scene_bgcolor);
+            return true;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const time = performance.now() * 0.0005;
+            material.uniforms['time'].value = time;
+            mesh.rotation.x = time * 0.2;
+            mesh.rotation.y = time * 0.4;
+            renderer.render(scene, camera);
+        }
+
+        if (! window.SetIcon) {
+            console.log("Here set the symbol box")
+            for (let [idx, theobj] of obj_list.entries()) {
+                console.log(theobj, " Index is ", idx)
+                // const lineset_string = atob(await getGithubContents("symbol_lineset.ply"));
+                const mesh_string = atob(await getGithubContents(repo_url+"symbol_mesh.ply"));
+                console.log(mesh_string)
+                // initPLYObject(theobj, lineset_string, mesh_string);
+                // icon_init(theobj)
+            }
+        //     .then(() => {
+        //   animate();
+        // })
+        // icon_init(theobj)
+        // console.log(window.SetIcon)
+        // window.SetIcon = true
+        // animate();
+        }
+    }
+
 
     /////////////////////////////////////////////
     ////////// Set up global variables //////////
     /////////////////////////////////////////////
     const scene_bgcolor = "FFF9DE";
     const github_auth = {
-        Authorization: "Bearer GITHUB_FINE_GRAIND_TOKEN",
+        Authorization: "Bearer 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",
         Accept: "application/vnd.github+object",
     };
 
@@ -646,11 +720,18 @@
             symboldiv.style.zIndex = 0
             document.body.appendChild(symboldiv)
         }
+        var symbol_fig = document.querySelector( '.symbol_fig' );
+        if ( symbol_fig ) {
+            renderSymbol(["abc", "def", "ghi"])
+        }
+
 
         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         console.log("ViewPort Width:", viewportWidth, "/ Height", viewportHeight);
         // $("#slide_container").css({"width": String(viewportWidth*0.45)+"px"})
+
+
 
         // setup break slide
         var found_chapterbreak = event.currentSlide.querySelector( '.chapter_break_container' );
