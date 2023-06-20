@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Committee meeting 28th Apr 2023</title>
+    <script type="module">
+        // Load the three.js for 3d object visualization
+        import * as THREE from  "https://cdn.jsdelivr.net/npm/three@0.127.0/build/three.module.js"
+        import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.127.0/examples/jsm/controls/OrbitControls.js"
+        import { PLYLoader } from "https://cdn.jsdelivr.net/npm/three@0.127.0/examples/jsm/loaders/PLYLoader.js"
+        window.THREE = THREE;
+        window.OrbitControls = OrbitControls;
+        window.PLYLoader = PLYLoader
+    </script>
+
+    <!-- Load reveal.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/css/reveal.min.css" integrity="sha512-V5fKCVKOFy36w8zJmLzPH5R6zU6KvuHOvxfMRczx2ZeqTjKRGSBO9yiZjCKEJS3n6EmENwrH/xvSwXqxje+VVA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/js/reveal.min.js" integrity="sha512-QYXU3Cojl94ZRiZRjUZpyg1odj9mKTON9MsTMzGNx/L3JqvMA3BQNraZwsZ83UeisO+QMVfFa83SyuYYJzR9hw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Load jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js" integrity="sha512-jGR1T3dQerLCSm/IGEGbndPwzszJBlKQ5Br9vuB0Pw2iyxOy+7AK+lJcCC8eaXyz/9du+bkCy4HXxByhxkHf+w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Load 3DMol.js -->
+    <script src="https://3Dmol.org/build/3Dmol-min.js"></script>
+    <script src="https://3Dmol.org/build/3Dmol.ui-min.js"></script>
+
+    <!-- Load MathJax for labex representation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-AMS_HTML"></script>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        section {
+            position: absolute !important;
+            top:0  !important;
+            left:0  !important;
+            height: 100%  !important;
+            /*width: 100%  !important;*/
+        }
+        canvas {
+            display: block;
+        }
+
+        .presentation_title {
+            position: absolute !important;
+            font-size: 45px !important;
+            font-weight: bold !important;
+            line-height: 1.25 !important;
+            padding-bottom: 20px !important;
+        }
+        .presentation_title2 {
+            padding-right: 50px !important;
+            line-height: 1.25 !important;
+            padding-bottom: 15px !important;
+            text-align: right !important;
+            font-size: 20px !important;
+        }
+
+        .page-number {
+            position: absolute;
+            bottom: 35px;
+            right: 8%;
+            color: black;
+            font-size: 36px;
+        }
+        .uzh_logo{
+            position: absolute !important;
+            top: 2.5vh !important;
+            left: 2.5vw !important;
+            height: 10vh;
+            width: auto;
+        }
+        .symbol_fig{
+            position: absolute;
+            top: 2.5vh;
+            right: 2.5vw;
+            height: 10vh;
+            /*filter: blur(2px); */
+        }
+
+        .reveal .progress{
+            height: 8px !important;
+            background-color: #F3E99F !important;
+        }
+        .reveal .progress span {
+            background-color: #FF6D60 !important;
+            transition: width 0.5s ease-out !important;
+            opacity: 1 !important;
+            z-index: 0 !important;
+        }
+        .laser-pointer {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            transition: opacity 0.3s;
+        }
+
+    </style>
+
+    <style>
+        .slide-title {
+            position: absolute !important;
+            top: 12.5% !important;
+            left: 2.5% !important;
+            padding: 10px !important;
+            font-size: 25px !important;
+            font-weight: bold !important;
+            z-index:auto !important;
+        }
+
+        /* Left text and right figure style pair*/
+        .slide_content_style1{
+            position: absolute !important;
+            top: 20% !important;
+            left: 2.5% !important;
+            width: 45% !important;
+            padding: 10px !important;
+            font-size: 20px !important;
+            text-align: left !important;
+        }
+        .slide_item_style1{
+            padding-bottom: 20px  !important;
+            font-size: 20px  !important;
+        }
+        .image-style1{
+            position: absolute !important;
+            top: 20% !important;
+            left: 50% !important;
+            width: 50% !important;
+            height: 65% !important;
+        }
+        .tablecell_style1{
+            font-size: 15px !important;
+        }
+        .highlight_style1{
+            color: darkred !important;
+            font-size: 25px !important;
+            padding-top: 15px !important;
+            padding-bottom: 15px !important;
+            font-weight: bold !important;
+        }
+        .image-style2{
+            position: absolute !important;
+            top: 20% !important;
+            left: 50% !important;
+        }
+
+        .caption_style{
+            font-size: 15px !important;
+            position: relative;
+            /*display: block;*/
+            width:50% !important;
+        }
+
+        .reference_style{
+            position: absolute !important;
+            bottom: 8% !important;
+            left: 0 !important;
+            color: rgb(108, 108, 108) !important;
+            font-size: 8px !important;
+            width:80%;
+            text-align: left;
+        }
+
+        .mol-container{
+            position: relative !important;
+            padding-top: 100%;
+        }
+        .content_subtitle{
+            background: #e6f0b680 !important;
+            padding: 5px !important;
+            margin-top: 10px !important;
+            margin-bottom: 20px !important;
+            background: radial-gradient(circle at center, #e6f0b680, #e6f0b630) !important;
+            border-radius: 10px !important;
+            background-color: #e6f0b680 !important;
+        }
+
+        .mol-container canvas {
+            position: absolute !important;
+            top: 0 !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            padding: 0 !important;
+        }
+
+        ul li{
+            padding-bottom:10px !important;
+            font-size: 25px !important;
+        }
+
+        .chapter_break{
+            position: absolute !important;
+            top : 50% !important;
+            left: 50% !important;
+            width:100% !important;
+            font-size: 45px !important;
+            font-weight: bold !important;
+            line-height: 1.25 !important;
+            transform: translate(-50%, -50%) !important
+        }
+
+        .image-gray {
+            filter: grayscale(100%);
+        }
+
+    </style>
+
+    <style>
+        .gallery {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-item {
+            position: relative !important;
+            margin-right: 40px !important;
+            margin-left: 40px !important;
+            margin-top: 20px !important;
+            margin-bottom:50px !important;
+        }
+
+        .gallery-item img {
+            width: auto;
+            height: 150px;
+            transition: all 0.3s ease-out;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(3);
+        }
+        .gallery-item_style2:hover img {
+            transform: scale(1.5) !important;
+        }
+        .gallery-item_style3:hover img {
+            transform: scale(2) translateY(20%) translateX(20%) !important;
+        }
+        .gallery-item_style4:hover img {
+            transform: scale(2) translateX(-10%) !important;
+        }
+
+        .gallery-item figcaption {
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            border-radius: 10px;
+            background-color: #fff0dbd0;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-out;
+        }
+
+        .gallery-item:hover figcaption {
+            transform: translateY(170px);
+        }
+    </style>
+
+</head>
+<body>
+<div class="reveal">
+    <div class="laser-pointer"></div>
+    <div class="slides" id="slide_container">
+        <!-- Title page -->
+        <section data-state="Title_Page">
+            <img id="greeting_bgimage" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); filter: blur(2px); height: 700px; width: auto;">
+            <div style="position:relative; height:300px; width:100%; top:5%"><p class="presentation_title" style="top:50px; width:100%">This is a Template Title</p></div>
+            <p class="presentation_title2">Your Name</p>
+            <p class="presentation_title2">Caflisch group</p>
+            <p class="presentation_title2">The DateTime</p>
+        </section>
+
+        <!--Template page-->
+        <!--<section data-state="slide_">-->
+        <!--    <p class="slide-title">This is a Template Slide for Demonstration</p>-->
+        <!--    <div class="slide_content_style1">-->
+        <!--        <p>This is a Template Main Context1</p>-->
+        <!--        <p>This is a Template Main Context2</p>-->
+        <!--        <p>This is a Template Main Context3</p>-->
+        <!--    </div>-->
+        <!--    <p class="reference_style">This is a template reference.</p>-->
+        <!--</section>-->
+
+        <section data-state="slide_OutlinePage">
+            <p class="slide-title">Outline</p>
+            <div class="slide_content_style1">
+                <p class="slide_item_style1" style="padding-left: 10%; ">1. Example Item </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">2. Example Item </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">3. Example Item </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">4. Example Item </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">5. Example Item </p>
+            </div>
+
+            <div class="image-style1">
+                <img id="outline_bgimage" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); height: 700px; width: auto; filter: blur(5px);" >
+            </div>
+        </section>
+
+        <!--<section data-state="slide_">-->
+        <!--    <p class="slide-title">This is a Template Slide for Demonstration</p>-->
+        <!--    <div class="slide_content_style1">-->
+        <!--        <p>This is a Template Main Context1</p>-->
+        <!--        <p>This is a Template Main Context2</p>-->
+        <!--        <p>This is a Template Main Context3</p>-->
+        <!--    </div>-->
+        <!--    <p class="reference_style">This is a template reference.</p>-->
+        <!--</section>-->
+
+        <section data-state="Page_Acknowledgement">
+            <p class="slide-title">Acknowledgement</p>
+            <ul class="slide_content_style1">
+                <li>People 1</li>
+                <li>People 2</li>
+                <li>People 3</li>
+                <li>People 4</li>
+            </ul>
+            <div class="slide_content_style1" style="width:50%">
+            </div>
+            <div class="image-style1">
+                <img id="img_group"   style="width: 100%; height:auto">
+            </div>
+
+        </section>
+
+        <!--<section data-state="slide_">-->
+        <!--    <p class="slide-title">This is a Template Slide for Demonstration</p>-->
+        <!--    <div class="slide_content_style1">-->
+        <!--        <p>This is a Template Main Context1</p>-->
+        <!--        <p>This is a Template Main Context2</p>-->
+        <!--        <p>This is a Template Main Context3</p>-->
+        <!--    </div>-->
+        <!--    <p class="reference_style">This is a template reference.</p>-->
+        <!--</section>-->
+
+    </div>
+</div>
+
+<script>
+    // Define the function to load ply file
+    async function getGithubContents(url){
+        // Fetch file from Github API
+        ret = await fetch(url, {headers: github_auth});
+        data = await ret.json();
+        if (data.hasOwnProperty("content") && data.content.length > 0){
+            console.log("Download file from github: route 1", url);
+            return data.content
+        } else if (data.hasOwnProperty("git_url")){
+            console.log("Download file from github: route 2", data.git_url);
+            ret_blob = await fetch(data.git_url, {headers: github_auth});
+            data2 = await ret_blob.json();
+            return data2.content
+        } else if (data.hasOwnProperty("sha")){
+            const blob_url =  url.replace(/contents.*/, "git/blobs")+"/"+data.sha;
+            console.log("Download file from github: route 3", blob_url);
+            ret_blob = await fetch(blob_url, {headers: github_auth});
+            data2 = await ret_blob.json();
+            return data2.content
+        }
+    }
+
+    async function loadImageBase64(fileurl) {
+        // Load image from URL and return base64 encoded image
+        try {
+            const data = await getGithubContents(fileurl);
+            let dataUriPrefix;
+            let format = fileurl.split('/').pop().split('.').pop();
+            if (format == 'png') {
+                dataUriPrefix = 'data:image/png;base64,';
+            } else if (format == 'jpeg' || format == 'jpg') {
+                dataUriPrefix = 'data:image/jpeg;base64,';
+            } else if (format == 'gif') {
+                dataUriPrefix = 'data:image/gif;base64,';
+            }
+            return dataUriPrefix + data
+        } catch (error) {
+            console.error('An error occurred while fetching the file:', error);
+        }
+    }
+
+    async function setupImage(image_id, figurl){
+        if (document.getElementById(image_id) == null) {
+            console.log("No such image id: ", image_id, " in the slide.")
+            return
+        } else {
+            var img = document.getElementById(image_id);
+            if (figurl.startsWith("data")){
+                // Base64 as input
+                img.src = figurl;
+            } else if (figurl.startsWith("http")) {
+                // URL as input
+                const fig_content = await loadImageBase64(figurl);
+                img.src = fig_content;
+            } else {
+                // Actual file in the root folder as input
+                img.src = figurl;
+            }
+            return
+        }
+    }
+
+    function loadPLYMesh(plycontent, scene, camera, light) {
+        // Load PLY file from base64 encoded string and return mesh
+        const loader = new PLYLoader();
+        const geometry = loader.parse(plycontent);
+        geometry.computeVertexNormals();
+        // const material = new THREE.MeshStandardMaterial({ color: 0x89aa97, flatShading: true });
+        const material = new THREE.MeshStandardMaterial({vertexColors: true, flatShading: true});
+        const mesh = new THREE.Mesh(geometry, material);
+        geometry.computeBoundingBox();
+        const boundingBox = geometry.boundingBox;
+        const center = boundingBox.getCenter(new THREE.Vector3());
+        mesh.position.set(-center.x, -center.y, -center.z);
+        mesh.onBeforeRender = function (renderer, scene, camera) {
+            light.position.copy(camera.position);
+        };
+        return mesh
+    }
+
+    async function addPLYtoStage(fileurl, scene, renderer, camera, light, offsets){
+        const plycontent = atob(await getGithubContents(fileurl));
+        var themesh = loadPLYMesh(plycontent, scene, camera, light);
+        console.log(themesh)
+        themesh.geometry.computeBoundingBox();
+        const boundingBox = themesh.geometry.boundingBox;
+        const center = boundingBox.getCenter(new THREE.Vector3());
+        themesh.position.set(-center.x + offsets[0], -center.y + offsets[1], -center.z +offsets[2]);
+        // mesh.position.set(position[0], position[1], position[2]);
+        scene.add(themesh);
+        return [scene, renderer, camera, light]
+    }
+
+    async function initPLYObject(divid, fileurl){
+        // Initialize the scene with a ply object
+        const THREE = window.THREE;
+        const OrbitControls = window.OrbitControls ;
+        console.log("Adding Ply object")
+        // Setup for Renderer
+        const renderer = new THREE.WebGLRenderer();
+        var camera
+        if (divid.length > 0){
+            var container = document.getElementById(divid);
+            console.log("using divid", divid, "Width", container.clientWidth, "Height: ", container.clientHeight)
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            const aspectRatio = container.clientWidth / container.clientHeight;
+            camera = new THREE.PerspectiveCamera(75, aspectRatio, 0.1, 1000);
+            camera.position.z = 5;
+        } else {
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+        }
+        // Setup for the Scene, Background color, and light
+        const scene = new THREE.Scene();
+        renderer.setClearColor("#"+scene_bgcolor);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // 0.5 intensity
+        scene.add(ambientLight);
+        const light = new THREE.DirectionalLight(0xffffff, 1, 0);
+        light.position.set(10, 10, 10);
+        scene.add(light);
+
+        // Add Orbit controler
+        const controls = new OrbitControls(camera, renderer.domElement);
+
+        // Convert the content from base 64 to string
+        console.log("Loading the plyfile", fileurl)
+        const plycontent = atob(await getGithubContents(fileurl));
+        mesh = loadPLYMesh(plycontent, scene, camera, light);
+        scene.add(mesh);
+        camera.position.set(0, 0, 20);
+        camera.near = 0.1;
+        camera.far = 1000;
+        camera.updateProjectionMatrix();
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        console.log("Do the animation")
+        animate();
+        return [scene, renderer, camera, light]
+    }
+
+    async function init3DMolObject(divid, fileurl){
+        // Initialize the scene with a 3Dmol object
+        var container = document.getElementById(divid);
+        var width = container.clientWidth;
+        var height = container.clientHeight;
+        var viewer = $3Dmol.createViewer(divid);
+        let format = fileurl.split("/").pop().split(".").pop();
+        console.log("Adding 3D molObj: Reading the file as ", format)
+
+        const mol_string = atob(await getGithubContents(fileurl))
+        viewer.addModel(mol_string, format);
+        viewer.setStyle({}, { stick: {} });
+        viewer.setBackgroundColor("#"+scene_bgcolor)
+        // Zoom to fit the molecule in the viewer and Render the molecule
+        viewer.zoomTo();
+        viewer.render();
+        // Set the canvas to relative position
+        reset_canvas(divid, viewer)
+        return viewer
+    }
+
+    function linspace(start, end, num) {
+        // Numpy-like linspace function
+        const step = (end - start) / (num - 1);
+        const result = new Array(num);
+        for (let i = 0; i < num; i++) {
+            result[i] = start + i * step;
+        }
+        return result;
+    }
+
+    function renderGridPoints(viewer, center, lengths, dims) {
+        // Render to grid based on three key parameters
+        const sphereRadius = 0.1;
+        const sphereColor = 0xff0000;
+        xs = linspace(center[0]-lengths[0]/2, center[0]+lengths[0]/2, dims[0]);
+        ys = linspace(center[1]-lengths[1]/2, center[1]+lengths[1]/2, dims[1]);
+        zs = linspace(center[2]-lengths[2]/2, center[2]+lengths[2]/2, dims[2]);
+        var newshape = viewer.addShape({color: sphereColor})
+        for (let x = 0; x < xs.length; x++) {
+            for (let y = 0; y < ys.length; y++) {
+                for (let z = 0; z < zs.length; z++) {
+                    //combinedShape.addSphere({ center: { x: xs[x], y: ys[y], z: zs[z] }, radius: sphereRadius, color: sphereColor });
+                    newshape.addSphere({ center: { x: xs[x], y: ys[y], z: zs[z] }, radius: sphereRadius});
+                }
+            }
+        }
+        viewer.zoomTo();
+        viewer.render();
+    }
+    function reset_canvas(parent_div, viewer){
+        // The canvas size is reset for the 3Dmol viewer if you switch slides
+        // Reset the canvas size when you go back to the slide that contains the 3Dmol viewer
+        var container = document.getElementById(parent_div);
+        // var width = container.clientWidth;
+        var width = container.offsetWidth;
+        var height = container.clientHeight;
+        console.log("Set the width/height of the canvas: ",parent_div, "height/width:", height, width)
+        viewer.setWidth(width);
+        viewer.setHeight(height);
+        viewer.render();
+        // $("#"+parent_div+" canvas").css({"position": "relative", "width":"100%", "height": "100%"})
+    }
+
+
+    /////////////////////////////////////////////
+    ////////// Set up global variables //////////
+    /////////////////////////////////////////////
+    const scene_bgcolor = "FFF9DE";
+    const github_auth = {
+        Authorization: "Bearer GITHUB_FINE_GRAIND_TOKEN",
+        Accept: "application/vnd.github+object",
+    };
+
+    const repo_url = "https://api.github.com/repos/GITHUB_USER_NAME/GITHUB_REPO_NAME/contents/";
+
+    // Set up the picuture of the first slide
+    setupImage("greeting_bgimage", repo_url+"Snap_bfl1_bh3.png")
+
+    var uzh_logo_e_pos_web_main
+    var image_section_break
+    var image_symbol
+    var image1, image2, image3
+
+    (async ()=>{
+        // Get UZH logo, presentation symbol and set up the logo for the first page
+        uzh_logo_e_pos_web_main = await loadImageBase64(repo_url+"uzh_logo_e_pos_web_main.jpg");
+        var imgdiv = document.createElement('img');
+        imgdiv.classList.add('uzh_logo');
+        imgdiv.src = uzh_logo_e_pos_web_main;
+        document.body.appendChild(imgdiv);
+
+        image_section_break= await loadImageBase64(repo_url+"section_break.png");
+        image_symbol = await loadImageBase64(repo_url+"symbol.png");
+        image1 = await loadImageBase64(repo_url+"im1.png");
+        image2 = await loadImageBase64(repo_url+"im2.png");
+        image3 = await loadImageBase64(repo_url+"im3.png");
+    })()
+
+
+    /////////////////////////////////////////////
+    ///// Initialize the reveal.js framework ////
+    /////////////////////////////////////////////
+    Reveal.initialize({
+        // Set the theme to white
+        theme: 'white',
+        // Set the transition style to slide
+        transition: 'convex',
+    });
+
+    /////////////////////////////////////////////
+    ////// Auxiliary and onchange functions /////
+    /////////////////////////////////////////////
+    Reveal.addEventListener( 'slidechanged', function( event ) {
+        // Add the UZH logo
+        var uzhLogoElement = document.querySelector( '.uzh_logo' );
+        if ( uzhLogoElement ) {
+            uzhLogoElement.src = uzh_logo_e_pos_web_main;
+        } else {
+            var imgdiv = document.createElement( 'img' );
+            imgdiv.classList.add( 'uzh_logo' );
+            imgdiv.src = uzh_logo_e_pos_web_main;
+            document.body.appendChild( imgdiv );
+        }
+
+        // Add the footer page number
+        var pageNumber = event.indexh + 1;
+        var totalPages = Reveal.getTotalSlides();
+        var pageString = pageNumber + '/' + totalPages;
+        var pageNumberElement = document.querySelector( '.page-number' );
+        if ( pageNumberElement ) {
+            pageNumberElement.innerHTML = pageString;
+            pageNumberElement.style.zIndex = 0
+        } else {
+            var pagediv = document.createElement( 'div' );
+            pagediv.classList.add( 'page-number' );
+            pagediv.innerHTML = pageString;
+            pagediv.style.zIndex = 0
+            document.body.appendChild( pagediv );
+        }
+
+        var symbol_fig = document.querySelector( '.symbol_fig' );
+        if ( symbol_fig ) {
+            symbol_fig.src = image_symbol
+        } else {
+            var symboldiv = document.createElement( 'img' );
+            symboldiv.classList.add( 'symbol_fig' );
+            symboldiv.src = image_symbol;
+            symboldiv.style.zIndex = 0
+            document.body.appendChild(symboldiv)
+        }
+
+        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        console.log("ViewPort Width:", viewportWidth, "/ Height", viewportHeight);
+        // $("#slide_container").css({"width": String(viewportWidth*0.45)+"px"})
+
+        // setup break slide
+        var found_chapterbreak = event.currentSlide.querySelector( '.chapter_break_container' );
+        var found_chapterbreakimg = event.currentSlide.querySelector( '.chapter_break_container img' );
+        if ( found_chapterbreak && found_chapterbreakimg.src.slice(0,4) !== "data") {
+            found_chapterbreakimg.src = image_section_break
+            found_chapterbreakimg.style.zIndex = -10;
+            found_chapterbreakimg.style.width = '75%';
+            found_chapterbreakimg.style.position = "absolute"
+            found_chapterbreakimg.style.transform = 'rotate(-30deg)';
+            found_chapterbreakimg.style.filter = "blur(5px)";
+            found_chapterbreakimg.style.bottom = 0;
+            found_chapterbreakimg.style.right = "-30%";
+            found_chapterbreakimg.style.opacity = 0.2;
+            var chapterbreak = document.querySelector( '.chapter_break')
+            chapterbreak.style.zIndex = 999
+        }
+    });
+
+    // Laser pointer function for the slides
+    const laserPointer = document.querySelector('.laser-pointer');
+    var usingLaser = false;
+    // Enable/disable the laser pointer on holding the 'L' key (key code 76)
+    document.addEventListener('keydown', (event) => {
+        if (event.key == "1" && !usingLaser){
+            laserPointer.style.opacity = 1;
+            usingLaser=true
+            $('body').css('cursor', 'none');
+            laserPointer.style.left = -100+"px";
+            laserPointer.style.top = -100+"px";
+        } else {
+            laserPointer.style.opacity = 0;
+            usingLaser=false
+            $('body').css('cursor', 'default');
+        }
+    });
+
+    // Move the laser pointer with the mouse
+    document.addEventListener('mousemove', (event) => {
+        if (usingLaser) {
+            laserPointer.style.left = event.clientX - laserPointer.clientWidth / 2 + 'px';
+            laserPointer.style.top = event.clientY - laserPointer.clientHeight / 2 + 'px';
+        }
+    });
+
+    $(".gallery-item").hover(
+        function() {
+            $(this).css({"z-index": 999})
+        },
+        function() {
+            $(this).css({"z-index": 0})
+        }
+    );
+</script>
+
+</body>
+</html>
