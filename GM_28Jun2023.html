@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Committee meeting 28th Apr 2023</title>
+    <title>Group Meeting 28 June 2023</title>
     <script type="module">
         // Load the three.js for 3d object visualization
         import * as THREE from  "https://cdn.jsdelivr.net/npm/three@0.127.0/build/three.module.js"
@@ -276,10 +276,10 @@
         <!-- Title page -->
         <section data-state="Title_Page">
             <img id="greeting_bgimage" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); filter: blur(2px); height: 700px; width: auto;">
-            <div style="position:relative; height:300px; width:100%; top:5%"><p class="presentation_title" style="top:50px; width:100%">This is a Template Title</p></div>
-            <p class="presentation_title2">Your Name</p>
-            <p class="presentation_title2">Caflisch group</p>
-            <p class="presentation_title2">The DateTime</p>
+            <div style="position:relative; height:300px; width:100%; top:5%"><p class="presentation_title" style="top:50px; width:100%">Improving molecular pattern recognition with molecular dynamics</p></div>
+            <p class="presentation_title2">Yang Zhang</p>
+            <p class="presentation_title2">Caflisch group Meeting</p>
+            <p class="presentation_title2">28 June, 2023</p>
         </section>
 
         <!--Template page-->
@@ -296,11 +296,11 @@
         <section data-state="slide_OutlinePage">
             <p class="slide-title">Outline</p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1" style="padding-left: 10%; ">1. Example Item </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">2. Example Item </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">3. Example Item </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">4. Example Item </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">5. Example Item </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">1. Introduction </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">2. Data-driven method to re-construct the binding pocket landscape </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">3. Predicting binding affintiy with neural network </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">4. Augmenting prediction with molecular dynamics data </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">5. Progress and future work </p>
             </div>
 
             <div class="image-style1">
@@ -329,7 +329,7 @@
             <div class="slide_content_style1" style="width:50%">
             </div>
             <div class="image-style1">
-                <img id="img_group"   style="width: 100%; height:auto">
+                <img id="img_group"  src="/Group_photo.jpg" style="width: 100%; height:auto">
             </div>
 
         </section>
@@ -569,10 +569,10 @@
         Accept: "application/vnd.github+object",
     };
 
-    const repo_url = "https://api.github.com/repos/GITHUB_USER_NAME/GITHUB_REPO_NAME/contents/";
+    const repo_url = "https://api.github.com/repos/miemiemmmm/GM_28Jun2023/contents/";
 
     // Set up the picuture of the first slide
-    setupImage("greeting_bgimage", repo_url+"Snap_bfl1_bh3.png")
+    setupImage("greeting_bgimage", repo_url+"Greeting_page.jpg")
 
     var uzh_logo_e_pos_web_main
     var image_section_break
