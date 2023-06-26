@@ -366,19 +366,12 @@
 		</section>
 
 		<section data-state="slide_common_methods">
-			<p class="slide-title">Current method for 3D structure featurization</p>
+			<p class="slide-title">Kep hypothesis for current 3D-based affinity prediction software</p>
 			<div class="slide_content_style1">
-				<p class="slide_item_style1">1. Ligand binding is primarily determined by local atomic configurations</p>
-				<p class="slide_item_style1">2. Reduce the structural complexity of the binding pocket </p>
-				<p class="slide_item_style1">by decomposing it into smaller "molecule blocks"</p>
-				<p class="slide_item_style1">3. Molecular properties are mapped to each grid points</p>
-
-<!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">1) Continuous space to discrete space</p>-->
-<!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 5px !important; ">2)  space to discrete space</p>-->
-<!--					<p class="slide_item_style1" style="padding-left: 20px !important; font-size: 15px !important; padding-bottom: 15px !important; ">E.g. a 6*6*6 Å cuboid contains a maximum of 25 atoms</p>-->
-
-
-				<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
+				<p class="slide_item_style1">1. Ligand binding is primarily determined by the local atomic configurations</p>
+				<p class="slide_item_style1">2. Substructure reduces structural complexity of the binding pocket </p>
+				<p class="slide_item_style1">3. Molecular properties are able to be mapped to 3D voxels</p>
+				<p class="slide_item_style1">4. Various atomic/molecular properties helps neural network prediction</p>
 				<p class="content_subtitle"><span class="highlight_style1" style="line-height: 40px">Objective: </span><br><span class="slide_item_style1" style="margin-bottom: 10px">Develop a framework to preprocess molecular dynamics trajectories and prepare input data for voxel-based binding affinity prediction.</span><br> </p>
 			</div>
 
@@ -390,43 +383,93 @@
 
 		</section>
 
+		<section data-state="slide_">
+            <p class="slide-title">Involve protein dynamics into 3D-based affinity prediction</p>
+            <div class="slide_content_style1">
+                <p class="slide_item_style1">1. Protein is flexible in natural condition</p>
+                <p class="slide_item_style1">2. Even small conformational change leads to significant change in 3D features</p>
+                <p class="slide_item_style1">3. Molecular dynamics provides a interface to study the protein flexibility and solvent effect</p>
+				<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
+
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Data-driven method to re-construct the binding pocket landscape</p>
+				<img title="Needed for the ">
+			</div>
+		</section>
+
 
 		<section data-state="slide_PackageArchetecture">
 			<p class="slide-title">Feature database construction </p>
 			<!--Attach the representation of the Package Archetecture-->
 			<div class="gallery" style="top:30% !important;">
 				<figure class="gallery-item PackageArchetecture image-gray">
-					<img id="PackageArchetecture_fig1" style="height: 200px !important; ">
+					<img id="PackageArchetecture_fig1" style="height: 200px !important; " src="/MD_workflow_2.png">
 					<figcaption for="PackageArchetecture_fig1">Fig1: Batch MD simulation using the ACGui</figcaption>
 				</figure>
 				<figure class="gallery-item PackageArchetecture image-gray">
-					<img id="PackageArchetecture_fig2">
+					<img id="PackageArchetecture_fig2" src="/Step1_2_Trajectory_processing_pipeline.jpg">
 					<figcaption for="PackageArchetecture_fig2">Fig2: Automated pipeline for trajectory decomposition</figcaption>
 				</figure>
 				<figure class="gallery-item PackageArchetecture image-gray">
-					<img id="PackageArchetecture_fig3">
+					<img id="PackageArchetecture_fig3" src="/Step1_3_Example_feature_block.png">
 					<figcaption for="PackageArchetecture_fig3">Fig3: Feature generation, representation, and storage</figcaption>
 				</figure>
 			</div>
 		</section>
 
-		<section data-state="slide_PackageArchetecture2">
-			<p class="slide-title">Decomposing binding pockets and predicting affinity </p>
-			<div class="gallery" style="top:30% !important;">
-				<figure class="gallery-item PackageArchetecture image-gray" >
-					<img id="PackageArchetecture_fig4">
-					<figcaption for="PackageArchetecture_fig4">Fig1: An example binding pose to predict</figcaption>
-				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray" >
-					<img id="PackageArchetecture_fig5">
-					<figcaption for="PackageArchetecture_fig5">Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
-				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
-					<img id="PackageArchetecture_fig6" style="height: 100% !important; width: 100%" >
-					<figcaption>Fig3: Affinity prediction </figcaption>
+		<section data-state="slide_current_study">
+            <p class="slide-title">Requirements for the dynamics landscape re-construction</p>
+            <div class="slide_content_style1">
+                <p>Similarity representation (features) is robust, specific and precise </p>
+                <p>Robust metric to measure the similarity between two molecule blocks</p>
+				<p>Robust metric to retrieve feature molecule block </p>
+				<p>Proper way to store the molecule blocks and their features in a databse</p>
+				<p>Register the molecule block to a correct orientation (Transformation matrix) </p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
+
+		<section data-state="slide_TrajectoryPreparation">
+			<p class="slide-title">Training material (Trajectory) generation </p>
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. ACGui batch MD simulation is used for standard simulation system preparation </p>
+				<p class="slide_item_style1">2. Protein-ligand complexes are sourced from the PDBBind refined set</p>
+				<p class="slide_item_style1">3. In the first batch of simulations, 75 pairs of complexes are simulated 4 times for 50ns per run</p>
+				<p class="slide_item_style1">4. Sequence embedding is applied to eliminate protein redundancy </p>
+			</div>
+
+			<div class="image-style1">
+				<figure class="gallery-item gallery-item_style2" style="width: 100% !important; ">
+					<img id="traj_prep" src="/MD_workflow_2.png" style="width: 100% !important; height: auto;">
+					<figcaption class="content_subtitle" for="traj_prep">Fig. Workflow of the ACGui batch MD simulation. </figcaption>
 				</figure>
 			</div>
+			<p class="reference_style">Ranjan, Chitta, Samaneh Ebrahimi, and Kamran Paynabar. "Sequence graph transform (SGT): A feature embedding function for sequence data mining." arXiv preprint arXiv:1608.03533 (2016).</p>
 		</section>
+
+		<section data-state="slide_">
+            <p class="slide-title">Combine the structral fingerprint with geometric fingerprint</p>
+            <div class="slide_content_style1">
+                <p>This is a Template Main Context1</p>
+                <p>This is a Template Main Context2</p>
+                <p>This is a Template Main Context3</p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
+
+		<section data-state="slide_">
+            <p class="slide-title">Computation of structural similarity from fingerprint</p>
+            <div class="slide_content_style1">
+                <p>This is a Template Main Context1</p>
+                <p>This is a Template Main Context2</p>
+                <p>This is a Template Main Context3</p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
 
 		<section data-state="slide_ICPRegistration">
 			<p class="slide-title">Transformation matrix generation</p>
@@ -458,7 +501,39 @@
         <!--    <p class="reference_style">This is a template reference.</p>-->
         <!--</section>-->
 
-        <section data-state="slide_current_study">
+
+
+
+
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Augmenting prediction with molecular dynamics data</p>
+				<img title="Needed for the ">
+			</div>
+		</section>
+
+		<section data-state="slide_PackageArchetecture2">
+			<p class="slide-title">Augmenting binding affinity prediction with molecular dynamics data </p>
+			<div class="gallery" style="top:30% !important;">
+				<figure class="gallery-item PackageArchetecture image-gray" >
+					<img id="PackageArchetecture_fig4" src="/Step2_1_Image_pocket.png">
+					<figcaption for="PackageArchetecture_fig4">Fig1: An example binding pose to predict</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray" >
+					<img id="PackageArchetecture_fig5" src="/Step2_2_MBlock_retrieval.jpg">
+					<figcaption for="PackageArchetecture_fig5">Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
+					<img id="PackageArchetecture_fig6" style="height: 100% !important; width: 100%" src="/Step_3DCNN_prediction.png">
+					<figcaption>Fig3: Affinity prediction </figcaption>
+				</figure>
+			</div>
+		</section>
+
+
+
+
+		<section data-state="slide_">
             <p class="slide-title">This is a Template Slide for Demonstration</p>
             <div class="slide_content_style1">
                 <p>This is a Template Main Context1</p>
@@ -468,12 +543,15 @@
             <p class="reference_style">This is a template reference.</p>
         </section>
 
-		<section data-state="">
-			<div class="chapter_break_container">
-				<p class="chapter_break">Augmenting prediction with molecular dynamics data</p>
-				<img>
-			</div>
-		</section>
+		<section data-state="slide_">
+            <p class="slide-title">This is a Template Slide for Demonstration</p>
+            <div class="slide_content_style1">
+                <p>This is a Template Main Context1</p>
+                <p>This is a Template Main Context2</p>
+                <p>This is a Template Main Context3</p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
 
 
 
