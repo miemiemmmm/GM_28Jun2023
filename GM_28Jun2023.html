@@ -398,17 +398,17 @@
 		<section data-state="slide_">
             <p class="slide-title">3D voxel-based binding affintiy prediction</p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1">PDBBind-refined set is used as high quality training dataset and test set</p>
-				<p class="slide_item_style1">3D convolutional neural network is used for prediction</p>
-				<p class="slide_item_style1">Both simple and complex features are used in different application</p>
-				<p class="slide_item_style1">People use different combinations of features in different application</p>
+                <p class="slide_item_style1">Training set: PDBBind-refined set is used as high quality training dataset and test set</p>
+				<p class="slide_item_style1">Learning method: 3D convolutional neural network</p>
+				<p class="slide_item_style1">Feature engineering: Both simple and complex features are used differently</p>
+				<p class="slide_item_style1">Feature engineering: Different combinations/arrangement of features</p>
 
 				<p class="slide_item_style1">Predicted results are biased  </p>
             </div>
 			<div  class="image-style1">
-				<img  src="/pafnucy_input.jpeg" style="height:50% !important; "><br>
+				<img  src="/pafnucy_input.jpeg" style="height:45% !important; "><br>
 				<p>Fig1. Input tensor represented with a 4D tensor for pafnucy</p>
-				<img  src="/gnina_atomdensity.jpeg" style="height:50% !important; ">
+				<img  src="/gnina_atomdensity.jpeg" style="height:45% !important; ">
 				<p>Fig2. Visualization of atom densities used as input to CNN scoring for Gnina</p>
 			</div>
             <p class="reference_style">
@@ -682,7 +682,7 @@
 			</div>
 			<div class="image-style1">
 				<figure class="gallery-item gallery-item_style2" style="width: 100% !important;">
-					<img id="img_childmodules" style="width: 100% !important; height: auto; margin-bottom: 50px; ">
+					<img id="img_childmodules" src="/Overall_workflow.jpg" style="width: 100% !important; height: auto; margin-bottom: 50px; ">
 					<!--						<img id="img_childmodules" style="{width: 100% !important; height: auto; margin-bottom: 50px} :hover {transform: scale(1.5) !important} ">-->
 					<figcaption class="content_subtitle" for="img_childmodules">Fig1. Information flow of trajectory features and the organization of corresponding sub-systems</figcaption>
 				</figure>
@@ -1151,6 +1151,34 @@
         }
     })
 
+	Reveal.addEventListener('slidechanged', function(event) {
+		if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_FutureWork') {
+			if ( !window.hasOwnProperty("plyset_set") ) {
+				add_PLYObject("final_ply_display", repo_url + "final_plys/tmpzc7n5fhg_final.ply")
+					.then(ret =>{
+						var unitoffset = 12
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmp5llzxuex_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,0 ,0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmp5t735ia__final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,0 ,0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpe1peac1p_final.ply", ret[0], ret[1], ret[2], ret[3], [0, -unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpezuetj0d_final.ply", ret[0], ret[1], ret[2], ret[3], [0, unitoffset, 0])
+
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmp6avlixw7_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,-unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmp8q4vb64d_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset, unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpm0cef41l_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset, unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpq6nlb_fz_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset, -unitoffset, 0])
+
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpmhgc81ig_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 0, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmp2a67037l_final.ply", ret[0], ret[1], ret[2], ret[3], [0, 2*unitoffset , 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpwwds3dqa_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset, 2*unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpr4oid3gj_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmptmv1rt7k_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, -unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmp42l6jg8w_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,2*unitoffset, 0])
+						add_PLYtoCurrentStage(repo_url + "final_plys/tmpq5d3h7a3_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 2*unitoffset, 0])
+					})
+				window.plyset_set = true;
+			}
+		}
+	})
 
 
     /////////////////////////////////////////////
