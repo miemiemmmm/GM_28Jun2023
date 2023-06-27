@@ -148,9 +148,11 @@
         }
         .image-style2{
             position: absolute !important;
-            top: 20% !important;
-            left: 50% !important;
+            top: 60% !important;
+            /*left: 50% !important;*/
+			width: 100% !important;
         }
+
 
         .caption_style{
             font-size: 15px !important;
@@ -175,6 +177,7 @@
         }
         .content_subtitle{
             background: #e6f0b680 !important;
+			font-size: 15px !important;
             padding: 5px !important;
             margin-top: 10px !important;
             margin-bottom: 20px !important;
@@ -379,9 +382,9 @@
             <p class="slide-title">Current methods: MD simulation in machine learning </p>
             <div class="slide_content_style1">
 				<img src="/current_MD_method1.png" style="width:100% !important; ">
-                <p class="content_subtitle" style="font-size: 15px !important; width:100% !important; padding-bottom: 30px">Method1: Encode the atoms with their 2D descriptor and 3D descriptor of trajectory</p>
+                <p class="content_subtitle" style="width:100% !important; padding-bottom: 30px">Method1: Encode the atoms with their 2D descriptor and 3D descriptor of trajectory</p>
 				<img src="/current_MD_method3.png" style="width:100% !important; ">
-				<p class="content_subtitle" style="font-size: 15px !important; width:100% !important;">Method2: For each atom, encode their potential energy \(E_{i}\) with neural network </p>
+				<p class="content_subtitle" style="width:100% !important;">Method2: For each atom, encode their potential energy \(E_{i}\) with neural network </p>
 
             </div>
 			<div  class="image-style1">
@@ -407,7 +410,7 @@
             </div>
 			<div  class="image-style1">
 				<img  src="/pafnucy_input.jpeg" style="height:40% !important; "><br>
-				<p class="content_subtitle">Fig1. Input tensor represented with a 4D tensor for pafnucy</p>
+				<p class="content_subtitle">Fig1. Input tensor represented with a 4D tensor in pafnucy</p>
 				<img  src="/gnina_atomdensity.jpeg" style="height:40% !important; ">
 				<p class="content_subtitle">Fig2. Visualization of atom densities used as input to CNN scoring for Gnina</p>
 			</div>
@@ -534,23 +537,79 @@
 			</div>
 		</section>
 
+		<section data-state="slide_RepresentingMolBlock">
+			<p class="slide-title">Molecule block embedding</p>
+			<!-- Attach a picture of several residues inside a box -->
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. Topological, chemical, and geometric features are concatenated to represent a single segment</p>
+				<p class="slide_item_style1">2. The molecular surface is computed to obtain the geometric feature of each segment</p>
+				<p class="slide_item_style1">3. Each segment's triangle mesh is down-sampled to ~600 points and point cloud is saved for further registration</p>
+				<p class="slide_item_style1">4. Join viewpoint components (VFH algorithm, will discuss later) to register the relative positions between segments</p>
+<!--					<p class="slide_item_style1">4. The feature vectors of each segment are ultimately joined by their "relative position" features</p>-->
+			</div>
+
+			<div class="image-style1" style="width: 50%" >
+				<table style="text-align: left; width: 100%; ">
+					<tbody style="font-size: 15px">
+					<tr><th class="content_subtitle" style="font-weight: bold; ">Topological feature</th></tr>
+					<tr><td style="padding-bottom: 5px">Atom number</td></tr>
+					<tr><td style="padding-bottom: 5px">Carbon Number</td></tr>
+					<tr><td style="padding-bottom: 5px">Hydrogen Number</td></tr>
+					<tr><td style="padding-bottom: 5px">Nitrogen number</td></tr>
+					<tr><td style="padding-bottom: 5px">Oxygen Number</td></tr>
+					<tr><td style="padding-bottom: 5px">Pseudo LJ: \(E_{lj} = 4 * \epsilon * ((\frac{\sigma}{r})^{12} - (\frac{\sigma}{r})^{6})\)</td></tr>
+					<tr><td style="padding-bottom: 5px">Pseudo Elec: \(E_{el} = k*\frac{q_{1}*q_{2}}{r}\)</td></tr>
+					<tr><th class="content_subtitle" style="font-weight: bold; ">Chemical feature</th></tr>
+					<tr><td style="padding-bottom: 5px">Donor number: SMARTS search</td></tr>
+					<tr><td style="padding-bottom: 5px">Acceptor number: SMARTS search</td></tr>
+					<tr><td style="padding-bottom: 5px">Positive charge: Gasteiger algorithm</td></tr>
+					<tr><td style="padding-bottom: 5px">Negative charge: Gasteiger algorithm</td></tr>
+					<tr><th class="content_subtitle" style="font-weight: bold; ">Geometric feature</th></tr>
+					<tr><td style="padding-bottom: 5px">Surface Area</td></tr>
+					<tr><td style="padding-bottom: 5px">Occupied Volume</td></tr>
+					<tr><td style="padding-bottom: 5px">Mean radius</td></tr>
+					<tr><td style="padding-bottom: 5px">Convex hull</td></tr>
+					</tbody>
+				</table>
+				<p class="" style="font-weight: bold">Table1: Available features </p>
+			</div>
+			<p class="reference_style">Sanner, M. F., Olson A.J. & Spehner, J.-C. (1996). Reduced Surface: An Efficient Way to Compute Molecular Surfaces. Biopolymers 38:305-320.</p>
+		</section>
+
 		<section data-state="slide_">
             <p class="slide-title">Combine the structural features with geometric features</p>
             <div class="slide_content_style1">
-                <p>This is a Template Main Context1</p>
+				<p class="slide_item_style1 highlight_style1" style="margin-bottom: 10px !important; ">Robust and specific substructure fingerprint for similarity computaiton </p>
+                <p class="slide_item_style1">Viewpoint Feature Histogram (VFH) is suitable for object recognition and pose identification</p>
                 <p>This is a Template Main Context2</p>
                 <p>This is a Template Main Context3</p>
             </div>
-            <p class="reference_style">This is a template reference.</p>
+
+			<div class="image-style1">
+				<img src="/Viewpoint_Segments.jpg" alt="" style="height: 50% !important; ">
+				<p class="content_subtitle">Fig1. Schematic 2D representation of viewpoint component and segmentation </p>
+			</div>
+			<div class="image-style2">
+				<img src="/VFH_sig.png" alt="" style="width:75% !important; ">
+				<p class="content_subtitle">Fig2. Viewpoint Feature Histogram (VFH) signatures of two different poses</p>
+			</div>
         </section>
 
 		<section data-state="slide_">
             <p class="slide-title">Computation of structural similarity from fingerprint</p>
             <div class="slide_content_style1">
-                <p>\( S=\frac{ \sum_{i=0}^{N} (C_{i} \times w_{i})}{\sum_{i=0}^{N}w_{i}}  \)  </p>
-				<p>where \(w_{i}\) is the weight of the segment \(i\),</p>
-				<p>\( C_{i} \) is the cosine similarity between segment i and the target vector calculated by:</p>
-				<p>\(C_{i}=\frac{V_{i} \cdot V_{target}}{\left \|V_{i} \right \| \ \left\|V_{target}\right\|}\)</p>
+				<p class="slide_item_style1 highlight_style1" style="margin-bottom: 10px !important; ">
+					Require a robust metric to measure the similarity between two molecule blocks
+				</p>
+				<p class="slide_item_style1">Each box contains 6 segments in maximum and similarity is calculated by: </p>
+                <p class="slide_item_style1" style="text-align: center !important; ">
+					\( S=\frac{ \sum_{i=0}^{N} (C_{i} \times w_{i})}{\sum_{i=0}^{N}w_{i}}  \)
+				</p>
+				<p class="slide_item_style1">where \(w_{i}\) is the weight of the segment \(i\),</p>
+				<p class="slide_item_style1">\( C_{i} \) is the cosine similarity between the test segment i and the target segment i:</p>
+				<p class="slide_item_style1" style="text-align: center !important; ">
+					\(C_{i}=\frac{V_{i} \cdot V_{target_i}}{\left \|V_{i} \right \| \ \left\|V_{target_i}\right\|}\)
+				</p>
 				<!--S=\frac{ \sum_{i=0}^{N} (C_{i} \times w_{i})}{\sum_{i=0}^{N}w_{i}}  -->
 				<!--C_{i}=\frac{V_{i} \cdot V_{target}}{\left \|V_{i} \right \| \ \left\|V_{target}\right\|}-->
             </div>
@@ -579,16 +638,21 @@
 		</section>
 
 		<section data-state="slide_">
+			<!--Page 17-->
             <p class="slide-title">Binding affinity data augmentation workflow</p>
             <div class="slide_content_style1">
-                <p>Step 1: Set the box sized ~20 \(Å^{3}\) with resolution of 1Å to 0.5Å</p>
-                <p>Step 2: Align the box to the geometric center of ligand</p>
-                <p>Step 3: Compute the time-serie of closest-atom-pairs distances </p>
-				<p>Step 4: For each representative frames, compute the panelty to the mean distance</p>
-				<p>Step 5: Label those frames by \(L = K_{i/d} \times p\)</p>
-				<p>Step 6: Store the feature vectors/labels to database as training dataset</p>
+                <p class="slide_item_style1">Step 1: Set the box sized ~20 \(Å^{3}\) with resolution of 1Å to 0.5Å</p>
+                <p class="slide_item_style1">Step 2: Align the box to the geometric center of ligand</p>
+                <p class="slide_item_style1">Step 3: Compute the time-serie of closest-atom-pairs distances </p>
+				<p class="slide_item_style1">Step 4: For each representative frames, compute the panelty to the mean distance</p>
+				<p class="slide_item_style1">Step 5: Label those frames by \(L = K_{i/d} \times p\)</p>
+				<p class="slide_item_style1">Step 6: Store the feature vectors/labels to database as training dataset</p>
             </div>
-            <p class="reference_style">This is a template reference.</p>
+			<div class="image-style1">
+				<img src="/Augment_current_methods.jpg" style="height:90% !important;">
+				<p class="content_subtitle">Fig. Augment of binding affinity data from representative frames of trajectories</p>
+			</div>
+
         </section>
 
 		<section data-state="slide_PackageArchetecture2">
@@ -612,10 +676,12 @@
 		<section data-state="slide_current_study">
             <p class="slide-title">Requirements for the dynamics landscape re-construction</p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1">Robust and specific substructure fingerprint for similarity computaiton </p>
-                <p class="slide_item_style1">Robust metric to measure the similarity between two molecule blocks</p>
+				<p class="slide_item_style1">++++++++++++++++++++++++++++++++++++++++++++++++++</p>
+
+<!--                <p class="slide_item_style1">Robust </p>-->
 				<p class="slide_item_style1">Proper database structure to store the molecule blocks and their features </p>
 				<p class="slide_item_style1">Align the molecule blocks to a correct orientation (Transformation matrix) </p>
+				<p class="slide_item_style1">++++++++++++++++++++++++++++++++++++++++++++++++++</p>
             </div>
             <p class="reference_style">This is a template reference.</p>
         </section>
@@ -795,26 +861,52 @@
         }
     }
 
-    async function setupImage(image_id, figurl){
-        if (document.getElementById(image_id) == null) {
-            console.log("No such image id: ", image_id, " in the slide.")
-            return
-        } else {
-            var img = document.getElementById(image_id);
-            if (figurl.startsWith("data")){
-                // Base64 as input
-                img.src = figurl;
-            } else if (figurl.startsWith("http")) {
-                // URL as input
-                const fig_content = await loadImageBase64(figurl);
-                img.src = fig_content;
-            } else {
-                // Actual file in the root folder as input
-                img.src = figurl;
-            }
-            return
-        }
+    async function setupImage(image, figurl){
+		var img;
+		// Check if image is an HTMLElement (like what's returned by document.getElementById)
+		if (image instanceof HTMLElement) {
+			img = image;
+		} else if (typeof image === 'string') {
+			// If it's not, assume it's an id
+			img = document.getElementById(image);
+			if (img == null) {
+				console.log("No such image id: ", image, " in the slide.")
+				return;
+			}
+		}
+		if (figurl.startsWith("data")){
+			// Base64 as input
+			img.src = figurl;
+		} else if (figurl.startsWith("http")) {
+			// URL as input
+			const fig_content = await loadImageBase64(figurl);
+			img.src = fig_content;
+		} else {
+			// Actual file in the root folder as input
+			img.src = figurl;
+		}
     }
+
+
+	async function getImagesFromRepo() {
+		try {
+			// Get the contents of the repo
+			let response = await fetch(repo_url, {headers: github_auth});
+			let data = await response.json();
+			// Iterate over each file in the repo
+			for (let file of data) {
+				// Check if the file is an image
+				if (file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg') || file.name.endsWith('.gif')) {
+					// Log the download URL of the image
+					filename = file.name.split('?')[0].split("/")[file.name.split('?')[0].split("/").length-1];
+					FIGURES[filename] = await loadImageBase64(repo_url + filename);
+				}
+			}
+		} catch (error) {
+			console.error("An error occurred:", error);
+		}
+	}
+
 
     function loadPLYMesh(plycontent, scene, camera, light) {
         // Load PLY file from base64 encoded string and return mesh
@@ -837,7 +929,6 @@
     async function addPLYtoStage(fileurl, scene, renderer, camera, light, offsets){
         const plycontent = atob(await getGithubContents(fileurl));
         var themesh = loadPLYMesh(plycontent, scene, camera, light);
-        console.log(themesh)
         themesh.geometry.computeBoundingBox();
         const boundingBox = themesh.geometry.boundingBox;
         const center = boundingBox.getCenter(new THREE.Vector3());
@@ -891,16 +982,16 @@
         camera.near = 0.1;
         camera.far = 1000;
         camera.updateProjectionMatrix();
-
-        // Animation loop
-        // function animate() {
-        //     requestAnimationFrame(animate);
-        //     renderer.render(scene, camera);
-        // }
-        // console.log("Do the animation")
-        // animate();
         return [scene, renderer, camera, light]
     }
+	//////////// A Typical Animation Function ////////////
+	// function animate() {
+	//     requestAnimationFrame(animate);
+	//     renderer.render(scene, camera);
+	// }
+	// console.log("Do the animation")
+	// animate();
+	/////////////////////////////////////////////////////
 
     async function init3DMolObject(divid, fileurl){
         // Initialize the scene with a 3Dmol object
@@ -1039,7 +1130,7 @@
 									meshobject.material.color = new THREE.Color(0x71EFA3);
 									meshobject.material.transparent = true;
 									meshobject.material.opacity = 0.75;
-									console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
+									// console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
 								}
 								c+=1
 							}
@@ -1052,6 +1143,16 @@
             window.SetIcon = true
         }
     }
+	function getElemName(element){
+		if (typeof element === 'string' || element instanceof String){
+			let elem = document.getElementById(element);
+			// let src_str = elem.src.split();
+			return elem.src.split("/")[elem.src.split("/").length-1]
+		} else if (element instanceof HTMLElement){
+			let elem = element;
+			return elem.src.split("/")[elem.src.split("/").length-1]
+		}
+	}
 
 
     /////////////////////////////////////////////
@@ -1065,14 +1166,12 @@
 
     const repo_url = "https://api.github.com/repos/miemiemmmm/GM_28Jun2023/contents/";
 
-    // Set up the picuture of the first slide
-    // setupImage("greeting_bgimage", repo_url+"Greeting_page.jpg")
+    // Set up the background image of the first greeting page
+	var greetingimage_elem = document.getElementById("greeting_bgimage")
+    setupImage(greetingimage_elem, getElemName(greetingimage_elem))
 
     var uzh_logo_e_pos_web_main
     var image_section_break
-
-    // var image_symbol
-    // var image1, image2, image3
 
     (async ()=>{
         // Get UZH logo, presentation symbol and set up the logo for the first page
@@ -1089,6 +1188,11 @@
         // image3 = await loadImageBase64(repo_url+"im3.png");
     })()
 
+	var PRELOAD_FIGURES = true
+	var FIGURES = {}
+	if (PRELOAD_FIGURES == true){
+		getImagesFromRepo()
+	}
 
     /////////////////////////////////////////////
     ///// Initialize the reveal.js framework ////
@@ -1156,9 +1260,33 @@
 			if ( !window.hasOwnProperty("ExampleMolBlock_set") ) {
 				initPLYObject("mol_block_mesh", repo_url + "example_block2.ply")
 					.then(ret =>{
-							//[scene, renderer, camera, light]
+						const scene = ret[0];
+						const renderer = ret[1];
+						const camera = ret[2];
+						const light = ret[3];
+						function animate() {
+							requestAnimationFrame(animate);
+							const time = (performance.now() * 0.0005) % 3 + 0.5;
+							let c = 0;
+							scene.traverse(function(meshobject) {
+								if (meshobject instanceof THREE.Mesh) {
+									meshobject.rotation.z = 0.05;
+									meshobject.rotation.y += time*0.004;
+
+									if (c==1){
+										meshobject.material.color = new THREE.Color(0x71EFA3);
+										meshobject.material.transparent = true;
+										meshobject.material.opacity = 0.75;
+										// console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
+									}
+									c+=1
+								}
+							});
+							renderer.render(scene, camera);
 						}
-					)
+						animate()
+
+					})
 
 				init3DMolObject("mol_block_pdb", repo_url + "example_block2.pdb")
 					.then(viewer => {
@@ -1189,26 +1317,52 @@
 	Reveal.addEventListener('slidechanged', function(event) {
 		if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_FutureWork') {
 			if ( !window.hasOwnProperty("plyset_set") ) {
-				addPLYtoStage("final_ply_display", repo_url + "final_plys/tmpzc7n5fhg_final.ply")
+				initPLYObject("final_ply_display", repo_url + "final_plys/tmpzc7n5fhg_final.ply")
 					.then(ret =>{
+						const scene = ret[0];
+						const renderer = ret[1];
+						const camera = ret[2];
+						const light = ret[3];
 						var unitoffset = 12
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmp5llzxuex_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,0 ,0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmp5t735ia__final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,0 ,0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpe1peac1p_final.ply", ret[0], ret[1], ret[2], ret[3], [0, -unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpezuetj0d_final.ply", ret[0], ret[1], ret[2], ret[3], [0, unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmp5llzxuex_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,0 ,0])
+						addPLYtoStage(repo_url + "final_plys/tmp5t735ia__final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,0 ,0])
+						addPLYtoStage(repo_url + "final_plys/tmpe1peac1p_final.ply", ret[0], ret[1], ret[2], ret[3], [0, -unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmpezuetj0d_final.ply", ret[0], ret[1], ret[2], ret[3], [0, unitoffset, 0])
 
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmp6avlixw7_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,-unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmp8q4vb64d_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset, unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpm0cef41l_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset, unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpq6nlb_fz_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset, -unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmp6avlixw7_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,-unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmp8q4vb64d_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset, unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmpm0cef41l_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset, unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmpq6nlb_fz_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset, -unitoffset, 0])
 
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpmhgc81ig_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 0, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmp2a67037l_final.ply", ret[0], ret[1], ret[2], ret[3], [0, 2*unitoffset , 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpwwds3dqa_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset, 2*unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpr4oid3gj_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmptmv1rt7k_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, -unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmp42l6jg8w_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,2*unitoffset, 0])
-						add_PLYtoCurrentStage(repo_url + "final_plys/tmpq5d3h7a3_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 2*unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmpmhgc81ig_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 0, 0])
+						addPLYtoStage(repo_url + "final_plys/tmp2a67037l_final.ply", ret[0], ret[1], ret[2], ret[3], [0, 2*unitoffset , 0])
+						addPLYtoStage(repo_url + "final_plys/tmpwwds3dqa_final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset, 2*unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmpr4oid3gj_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmptmv1rt7k_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, -unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmp42l6jg8w_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,2*unitoffset, 0])
+						addPLYtoStage(repo_url + "final_plys/tmpq5d3h7a3_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 2*unitoffset, 0])
+
+						function animate() {
+							requestAnimationFrame(animate);
+							const time = (performance.now() * 0.0005) % 3 + 0.5;
+							let c = 0;
+							scene.traverse(function(meshobject) {
+								if (meshobject instanceof THREE.Mesh) {
+									meshobject.rotation.z = 0.05;
+									meshobject.rotation.y += time*0.004;
+
+									if (c==1){
+										meshobject.material.color = new THREE.Color(0x71EFA3);
+										meshobject.material.transparent = true;
+										meshobject.material.opacity = 0.75;
+										// console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
+									}
+									c+=1
+								}
+							});
+							renderer.render(scene, camera);
+						}
+						animate()
 					})
 				window.plyset_set = true;
 			}
@@ -1220,6 +1374,25 @@
     ////// Auxiliary and onchange functions /////
     /////////////////////////////////////////////
     Reveal.addEventListener( 'slidechanged', function( event ) {
+		var images = event.currentSlide.getElementsByTagName('img');
+		// Iterate over each image
+		for (var i = 0; i < images.length; i++) {
+			// Log the src attribute to the console
+			if (images[i].src.length > 0 && images[i].src.length < 75 && ! images[i].src.includes("http")){
+				let imagename = getElemName(images[i]);
+						// images[i].src.split("/")[images[i].src.split("/").length-1];
+
+				if (FIGURES.hasOwnProperty(imagename)){
+					console.log("Setting image from FIGURES variable")
+					images[i].src = FIGURES[imagename];
+				} else {
+					console.log("Setting image with filename (Download): ", imagename);
+			  		setupImage(images[i], repo_url + imagename);
+				}
+
+			}
+		}
+
         // Add the UZH logo
         var uzhLogoElement = document.querySelector( '.uzh_logo' );
         if ( uzhLogoElement ) {
@@ -1265,7 +1438,7 @@
 
         const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
         const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-        console.log("ViewPort Width:", viewportWidth, "/ Height", viewportHeight);
+        // console.log("ViewPort Width:", viewportWidth, "/ Height", viewportHeight);
         // $("#slide_container").css({"width": String(viewportWidth*0.45)+"px"})
 
 
