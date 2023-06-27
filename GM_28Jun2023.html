@@ -275,8 +275,8 @@
     <div class="slides" id="slide_container">
         <!-- Title page -->
         <section data-state="Title_Page">
-            <img id="greeting_bgimage" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); filter: blur(2px); height: 700px; width: auto;">
-            <div style="position:relative; height:300px; width:100%; top:5%"><p class="presentation_title" style="top:50px; width:100%">Improving molecular pattern recognition with molecular dynamics</p></div>
+            <img id="greeting_bgimage" src="/interval_background.png" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); filter: blur(2px); height: 700px; width: auto;">
+            <div style="position:relative; height:300px; width:100%; top:5%"><p class="presentation_title" style="top:50px; width:100%">Improving molecular interaction recognition with molecular dynamics</p></div>
             <p class="presentation_title2">Yang Zhang</p>
             <p class="presentation_title2">Caflisch group Meeting</p>
             <p class="presentation_title2">28 June, 2023</p>
@@ -297,8 +297,8 @@
             <p class="slide-title">Outline</p>
             <div class="slide_content_style1" style="width: 100% !important;">
                 <p class="slide_item_style1" style="padding-left: 10%; ">1. Introduction </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">2. Data-driven method to re-construct the binding pocket landscape </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">3. Predicting binding affintiy with neural network </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">2. Current methods: binding affintiy prediction </p>
+				<p class="slide_item_style1" style="padding-left: 10%; ">3. Data-driven method to re-construct the binding pocket landscape </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">4. Augmenting prediction with molecular dynamics data </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">5. Progress and future work </p>
             </div>
@@ -308,8 +308,15 @@
             </div>
         </section>
 
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Current methods: binding affintiy prediction</p>
+				<img title="Needed for the ">
+			</div>
+		</section>
+
         <section data-state="slide_VoxelBasedMethod">
-			<p class="slide-title">Current methods for binding prediction</p>
+			<p class="slide-title">Current methods: Graph and 3D voxel methods</p>
 			<div class="slide_content_style1">
 				<table>
 					<tr>
@@ -361,12 +368,59 @@
 				<img id="voxelexample_img" src="/Example_VoxelBasedMethod.png" style="height:40% !important; "><br>
 				<p for="voxelexample_img" class="content_subtitle">Fig2: Example voxel-based method</p>
 			</div>
-
-			<p class="reference_style">Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.<br>Duvenaud, David K., et al. "Convolutional networks on graphs for learning molecular fingerprints." Advances in neural information processing systems 28 (2015).<br>Li, Yanjun, et al. "DeepAtom: A framework for protein-ligand binding affinity prediction." 2019 IEEE International Conference on Bioinformatics and Biomedicine (BIBM). IEEE, 2019.</p>
+			<p class="reference_style">
+				Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.<br>
+				Duvenaud, David K., et al. "Convolutional networks on graphs for learning molecular fingerprints." Advances in neural information processing systems 28 (2015).<br>
+				Li, Yanjun, et al. "DeepAtom: A framework for protein-ligand binding affinity prediction." 2019 IEEE International Conference on Bioinformatics and Biomedicine (BIBM). IEEE, 2019.
+			</p>
 		</section>
 
+		<section data-state="slide_">
+            <p class="slide-title">Current methods: MD simulation in machine learning </p>
+            <div class="slide_content_style1">
+				<img src="/current_MD_method1.png" style="width:100% !important; ">
+                <p class="caption_style" style="width:100% !important; padding-bottom: 30px">Method1: Encode the atoms with their 2D descriptor and 3D descriptor of trajectory</p>
+				<img src="/current_MD_method3.png" style="width:100% !important; ">
+				<p class="caption_style" style="width:100% !important;">Method2: For each atom, encode their potential energy \(E_{i}\) with neural network </p>
+
+            </div>
+			<div  class="image-style1">
+				<img  src="/current_MD_method2.png" style="width:100% !important; ">
+				<p class="caption_style" style="width:100% !important;">Method3: Encode the 3D coordinate of atoms to RGB chennels of 2D images</p>
+			</div>
+            <p class="reference_style">
+				Ash, Jeremy, and Denis Fourches. "Characterizing the chemical space of ERK2 kinase inhibitors using descriptors computed from molecular dynamics trajectories." Journal of chemical information and modeling 57.6 (2017): 1286-1299.<br>
+				Gastegger, Michael, Jörg Behler, and Philipp Marquetand. "Machine learning molecular dynamics for the simulation of infrared spectra." Chemical science 8.10 (2017): 6924-6935.<br>
+				Plante, Ambrose, et al. "A machine learning approach for the discovery of ligand-specific functional mechanisms of GPCRs." Molecules 24.11 (2019): 2097.
+			</p>
+        </section>
+
+		<section data-state="slide_">
+            <p class="slide-title">3D voxel-based binding affintiy prediction</p>
+            <div class="slide_content_style1">
+                <p class="slide_item_style1">PDBBind-refined set is used as high quality training dataset and test set</p>
+				<p class="slide_item_style1">3D convolutional neural network is used for prediction</p>
+				<p class="slide_item_style1">Both simple and complex features are used in different application</p>
+				<p class="slide_item_style1">People use different combinations of features in different application</p>
+
+				<p class="slide_item_style1">Predicted results are biased  </p>
+            </div>
+			<div  class="image-style1">
+				<img  src="/pafnucy_input.jpeg" style="height:50% !important; "><br>
+				<p>Fig1. Input tensor represented with a 4D tensor for pafnucy</p>
+				<img  src="/gnina_atomdensity.jpeg" style="height:50% !important; ">
+				<p>Fig2. Visualization of atom densities used as input to CNN scoring for Gnina</p>
+			</div>
+            <p class="reference_style">
+				Stepniewska-Dziubinska, Marta M., Piotr Zielenkiewicz, and Pawel Siedlecki. "Development and evaluation of a deep learning model for protein–ligand binding affinity prediction." Bioinformatics 34.21 (2018): 3666-3674.<br>
+				Ragoza, Matthew, et al. "Protein–ligand scoring with convolutional neural networks." Journal of chemical information and modeling 57.4 (2017): 942-957.
+			</p>
+        </section>
+
+
+
 		<section data-state="slide_common_methods">
-			<p class="slide-title">Kep hypothesis for current 3D-based affinity prediction software</p>
+			<p class="slide-title">Kep hypothesis for 3D-based affinity prediction software</p>
 			<div class="slide_content_style1">
 				<p class="slide_item_style1">1. Ligand binding is primarily determined by the local atomic configurations</p>
 				<p class="slide_item_style1">2. Substructure reduces structural complexity of the binding pocket </p>
@@ -375,20 +429,22 @@
 				<p class="content_subtitle"><span class="highlight_style1" style="line-height: 40px">Objective: </span><br><span class="slide_item_style1" style="margin-bottom: 10px">Develop a framework to preprocess molecular dynamics trajectories and prepare input data for voxel-based binding affinity prediction.</span><br> </p>
 			</div>
 
-
 			<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
 				<div id="slide_RefPDBAndBox" style="width: 100%; height: 100%"></div>
 				<p class="content_subtitle" style="font-size: 12px"><span style="font-weight: bold;">Stage1:</span> Protein(gray cartoon); ligand and pocket(green sticks), bounding box(light green cuboid), grid points(red dots) and molecule blocks (purple cuboids)</p>
 			</div>
-
 		</section>
 
+
+
+
+
 		<section data-state="slide_">
-            <p class="slide-title">Involve protein dynamics into 3D-based affinity prediction</p>
+            <p class="slide-title">Imporve 3D-based affinity prediction with protein dynamics??? </p>
             <div class="slide_content_style1">
                 <p class="slide_item_style1">1. Protein is flexible in natural condition</p>
-                <p class="slide_item_style1">2. Even small conformational change leads to significant change in 3D features</p>
-                <p class="slide_item_style1">3. Molecular dynamics provides a interface to study the protein flexibility and solvent effect</p>
+                <p class="slide_item_style1">2. Small conformational change could lead to significant change in 3D features</p>
+                <p class="slide_item_style1">3. Molecular dynamics simulation provides a interface to study the protein flexibility and solvent effect</p>
 				<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
             </div>
             <p class="reference_style">This is a template reference.</p>
@@ -421,18 +477,6 @@
 			</div>
 		</section>
 
-		<section data-state="slide_current_study">
-            <p class="slide-title">Requirements for the dynamics landscape re-construction</p>
-            <div class="slide_content_style1">
-                <p>Similarity representation (features) is robust, specific and precise </p>
-                <p>Robust metric to measure the similarity between two molecule blocks</p>
-				<p>Robust metric to retrieve feature molecule block </p>
-				<p>Proper way to store the molecule blocks and their features in a databse</p>
-				<p>Register the molecule block to a correct orientation (Transformation matrix) </p>
-            </div>
-            <p class="reference_style">This is a template reference.</p>
-        </section>
-
 		<section data-state="slide_TrajectoryPreparation">
 			<p class="slide-title">Training material (Trajectory) generation </p>
 			<div class="slide_content_style1">
@@ -451,8 +495,47 @@
 			<p class="reference_style">Ranjan, Chitta, Samaneh Ebrahimi, and Kamran Paynabar. "Sequence graph transform (SGT): A feature embedding function for sequence data mining." arXiv preprint arXiv:1608.03533 (2016).</p>
 		</section>
 
+		<section data-state="slide_ExampleMolBlock">
+			<p class="slide-title">Segmenting a molecule block </p>
+			<!--Example image of a molecule block (box) as well as protein structure -->
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. Each molecule block is segmented by consecutive residues, top 6 segments are retained</p>
+				<p class="slide_item_style1">2. Atoms from consecutive residues (within N residues) are considered to be in one segment </p>
+				<p class="slide_item_style1">3. For the computation of chemical features, full residues are maintained if at least one atom falls into the bounding box (Stage1)</p>
+				<p class="slide_item_style1">4. Segments are ordered from the most atoms to the least atoms (Stage2)</p>
+				<p class="slide_item_style1">5. Each segment computes multiple types of descriptors (topological, chemical and geometric) </p>
+
+			</div>
+			<div class="image-style1" style="top:10% !important; ">
+				<div id="mol_block_pdb" class="mol-container" style="left: 50% !important; transform: translate(-50%) !important;  height: 200px !important; width: 100% !important;"></div>
+				<p for="mol_block_pdb" class="content_subtitle" style="margin-top: 10px !important; position: relative; text-align: left !important; ">Stage1: Example of a "molecule block" shown in stick representation, with the bounding box colored purple. </p><br>
+				<div id="mol_block_mesh" style="height: 200px !important; width: 100% !important; position: relative; left: 50% !important; transform: translate(-50%) !important; "></div>
+				<p for="mol_block_mesh" class="content_subtitle" style="margin-top: 10px !important; position: relative; text-align: left !important; ">Stage2: Visualization of the segmented "molecule block" as a triangular mesh. Segments are arranged in a gradient from dark to bright colors, indicating their order. </p>
+			</div>
+		</section>
+
+		<section data-state="slide_Intro3DInterpolation">
+			<p class="slide-title">Feature interpolation from coordinates to mesh grids</p>
+			<!--Attach the function to interpolate and the method to distribute features -->
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. Initialize a grid on top of each molecule block and create a Kd-tree for neighbor search</p>
+				<p class="slide_item_style1">2. Select a coordinate and query the grid point within a specified distance</p>
+				<p class="slide_item_style1">3. Rasterize the "weight" of the coordinate (e.g. atomic mass) using Gaussian: <br><span style="padding-left:100px">\(w_i = \frac{w_0}{\sigma \sqrt{2\pi}}exp\left(-\frac{\left(r_i-r_0\right)^2}{\sigma^2}\right)\)</span> </p>
+				<p class="slide_item_style1" style="padding-left: 20px !important; ">where \(r_i\) is the grid point coordinate and the \(r_0\) is the reference atom coordinate, \(w_0\) is the feature weight of that atom, and \(\sigma\) is the smoothness of the interpolation </p>
+				<p class="slide_item_style1">4. Repeat steps 2 and 3 until all atoms in the bounding box are processed </p>
+			</div>
+			<div class="image-style1">
+				<img id="feature_interp_exp1" src="/tmp05dodkbp_final_feat.png" style="height: 36%">
+				<img id="feature_struct_exp1" src="/tmp05dodkbp_final_conf.png" style="height: 36%">
+				<p class="content_subtitle">Fig1: Example structure 1 within bounding box (right) and its rasterized features (left); Grid points are sized according to the cumulative weight of atom numbers. Residues are depicted with gold sticks, and the bounding box is colored pink.</p>
+				<img id="feature_interp_exp2" src="/tmpo_gbx3oc_final_feat.png" style="height: 36%">
+				<img id="feature_struct_exp2" src="/tmpo_gbx3oc_final_conf.png" style="height: 36%">
+				<p class="content_subtitle">Fig2: Example structure 2 within bounding box (right) and its rasterized features (left); Color scheme is as the previous figure. </p>
+			</div>
+		</section>
+
 		<section data-state="slide_">
-            <p class="slide-title">Combine the structral fingerprint with geometric fingerprint</p>
+            <p class="slide-title">Combine the structural features with geometric features</p>
             <div class="slide_content_style1">
                 <p>This is a Template Main Context1</p>
                 <p>This is a Template Main Context2</p>
@@ -464,12 +547,95 @@
 		<section data-state="slide_">
             <p class="slide-title">Computation of structural similarity from fingerprint</p>
             <div class="slide_content_style1">
-                <p>This is a Template Main Context1</p>
-                <p>This is a Template Main Context2</p>
-                <p>This is a Template Main Context3</p>
+                <p>\( S=\frac{ \sum_{i=0}^{N} (C_{i} \times w_{i})}{\sum_{i=0}^{N}w_{i}}  \)  </p>
+				<p>where \(w_{i}\) is the weight of the segment \(i\),</p>
+				<p>\( C_{i} \) is the cosine similarity between segment i and the target vector calculated by:</p>
+				<p>\(C_{i}=\frac{V_{i} \cdot V_{target}}{\left \|V_{i} \right \| \ \left\|V_{target}\right\|}\)</p>
+				<!--S=\frac{ \sum_{i=0}^{N} (C_{i} \times w_{i})}{\sum_{i=0}^{N}w_{i}}  -->
+				<!--C_{i}=\frac{V_{i} \cdot V_{target}}{\left \|V_{i} \right \| \ \left\|V_{target}\right\|}-->
+            </div>
+			<div class="image-style1">
+				<img style="height:80%  !important;; width: auto !important; height:auto" src="/cosine_similarity.jpg">
+				<p class="content_subtitle">Fig. A paradigm for cosine similarity computation</p>
+			</div>
+            <p class="reference_style">https://en.wikipedia.org/wiki/Cosine_similarity<br>https://aitechtrend.com/how-cosine-similarity-can-improve-your-machine-learning-models/</p>
+        </section>
+
+        <!--<section data-state="slide_">-->
+        <!--    <p class="slide-title">This is a Template Slide for Demonstration</p>-->
+        <!--    <div class="slide_content_style1">-->
+        <!--        <p>This is a Template Main Context1</p>-->
+        <!--        <p>This is a Template Main Context2</p>-->
+        <!--        <p>This is a Template Main Context3</p>-->
+        <!--    </div>-->
+        <!--    <p class="reference_style">This is a template reference.</p>-->
+        <!--</section>-->
+
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Augmenting prediction with molecular dynamics data</p>
+				<img title="Needed for the ">
+			</div>
+		</section>
+
+		<section data-state="slide_">
+            <p class="slide-title">Binding affinity data augmentation workflow</p>
+            <div class="slide_content_style1">
+                <p>Step 1: Set the box sized ~20 \(Å^{3}\) with resolution of 1Å to 0.5Å</p>
+                <p>Step 2: Align the box to the geometric center of ligand</p>
+                <p>Step 3: Compute the time-serie of closest-atom-pairs distances </p>
+				<p>Step 4: For each representative frames, compute the panelty to the mean distance</p>
+				<p>Step 5: Label those frames by \(L = K_{i/d} \times p\)</p>
+				<p>Step 6: Store the feature vectors/labels to database as training dataset</p>
             </div>
             <p class="reference_style">This is a template reference.</p>
         </section>
+
+		<section data-state="slide_PackageArchetecture2">
+			<p class="slide-title">Protein dynamics landscape re-construction</p>
+			<div class="gallery" style="top:30% !important;">
+				<figure class="gallery-item PackageArchetecture image-gray" >
+					<img id="PackageArchetecture_fig4" src="/Step2_1_Image_pocket.png">
+					<figcaption for="PackageArchetecture_fig4">Fig1: An example binding pose to predict</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray" >
+					<img id="PackageArchetecture_fig5" src="/Step2_2_MBlock_retrieval.jpg">
+					<figcaption for="PackageArchetecture_fig5">Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
+				</figure>
+				<figure class="gallery-item PackageArchetecture image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
+					<img id="PackageArchetecture_fig6" style="height: 100% !important; width: 100%" src="/Step_3DCNN_prediction.png">
+					<figcaption>Fig3: Affinity prediction </figcaption>
+				</figure>
+			</div>
+		</section>
+
+		<section data-state="slide_current_study">
+            <p class="slide-title">Requirements for the dynamics landscape re-construction</p>
+            <div class="slide_content_style1">
+                <p class="slide_item_style1">Robust and specific substructure fingerprint for similarity computaiton </p>
+                <p class="slide_item_style1">Robust metric to measure the similarity between two molecule blocks</p>
+				<p class="slide_item_style1">Proper database structure to store the molecule blocks and their features </p>
+				<p class="slide_item_style1">Align the molecule blocks to a correct orientation (Transformation matrix) </p>
+            </div>
+            <p class="reference_style">This is a template reference.</p>
+        </section>
+
+		<section data-state="slide_PocketReassembleDetails">
+			<p class="slide-title">Pocket reassembly workflow</p>
+			<div class="slide_content_style1">
+				<p class="slide_item_style1">1. Extract the binding site from the protein-ligand interface and establish its corresponding mesh grid </p>
+				<p class="slide_item_style1">2. Sample sub-blocks within the bounding box and retrieve features from feature database  </p>
+				<p class="slide_item_style1">3. Retain sub-blocks with similarity scores below a specific threshold </p>
+				<p class="slide_item_style1">4. Obtain the transformation matrix through geometric alignment </p>
+				<p class="slide_item_style1">5. Apply the transformation matrix to the sub-block feature and align to the target structure</p>
+			</div>
+			<div class="image-style1">
+				<img id="img_pocket_assemble" src="/Step2_2_MBlock_retrieval.jpg" style="width: 100%; ">
+				<p class="content_subtitle">Fig1. Illustrating the process of converting a static docked pose into features suitable for training. </p>
+			</div>
+		</section>
+
+
 
 		<section data-state="slide_ICPRegistration">
 			<p class="slide-title">Transformation matrix generation</p>
@@ -490,65 +656,12 @@
 			<p class="reference_style">Besl, Paul J., and Neil D. McKay. "Method for registration of 3-D shapes." Sensor fusion IV: control paradigms and data structures. Vol. 1611. Spie, 1992.<br>https://github.com/yassram/iterative-closest-point</p>
 		</section>
 
-
-        <!--<section data-state="slide_">-->
-        <!--    <p class="slide-title">This is a Template Slide for Demonstration</p>-->
-        <!--    <div class="slide_content_style1">-->
-        <!--        <p>This is a Template Main Context1</p>-->
-        <!--        <p>This is a Template Main Context2</p>-->
-        <!--        <p>This is a Template Main Context3</p>-->
-        <!--    </div>-->
-        <!--    <p class="reference_style">This is a template reference.</p>-->
-        <!--</section>-->
-
-
-
-
-
-		<section data-state="">
-			<div class="chapter_break_container">
-				<p class="chapter_break">Augmenting prediction with molecular dynamics data</p>
-				<img title="Needed for the ">
-			</div>
-		</section>
-
-		<section data-state="slide_PackageArchetecture2">
-			<p class="slide-title">Augmenting binding affinity prediction with molecular dynamics data </p>
-			<div class="gallery" style="top:30% !important;">
-				<figure class="gallery-item PackageArchetecture image-gray" >
-					<img id="PackageArchetecture_fig4" src="/Step2_1_Image_pocket.png">
-					<figcaption for="PackageArchetecture_fig4">Fig1: An example binding pose to predict</figcaption>
-				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray" >
-					<img id="PackageArchetecture_fig5" src="/Step2_2_MBlock_retrieval.jpg">
-					<figcaption for="PackageArchetecture_fig5">Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
-				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
-					<img id="PackageArchetecture_fig6" style="height: 100% !important; width: 100%" src="/Step_3DCNN_prediction.png">
-					<figcaption>Fig3: Affinity prediction </figcaption>
-				</figure>
-			</div>
-		</section>
-
-
-
-
 		<section data-state="slide_">
-            <p class="slide-title">This is a Template Slide for Demonstration</p>
+            <p class="slide-title">Network architecture</p>
             <div class="slide_content_style1">
-                <p>This is a Template Main Context1</p>
-                <p>This is a Template Main Context2</p>
-                <p>This is a Template Main Context3</p>
-            </div>
-            <p class="reference_style">This is a template reference.</p>
-        </section>
-
-		<section data-state="slide_">
-            <p class="slide-title">This is a Template Slide for Demonstration</p>
-            <div class="slide_content_style1">
-                <p>This is a Template Main Context1</p>
-                <p>This is a Template Main Context2</p>
-                <p>This is a Template Main Context3</p>
+                <p class="slide_item_style1">ImageNet</p>
+                <p class="slide_item_style1">ResNet</p>
+                <p class="slide_item_style1">Personalize network architecture</p>
             </div>
             <p class="reference_style">This is a template reference.</p>
         </section>
@@ -579,11 +692,12 @@
 		<section data-state="slide_FutureWork">
 			<p class="slide-title">Future Work</p>
 			<div class="slide_content_style1">
-				<p class="slide_item_style1">1. Integrate the viewpoint component into the molecule block embedding algorithm</p>
-				<p class="slide_item_style1">2. Build a feature database for molecule blocks (16 examples in Stage1)</p>
-				<p class="slide_item_style1">3. Develop an efficient algorithm for aligning the target molecule block with retrieved sub-blocks</p>
-				<p class="slide_item_style1">4. Create additional features for feature generation </p>
-				<p class="slide_item_style1">5. Train a voxel-based machine learning model for binding affinity prediction</p>
+				<p class="slide_item_style1">1. Apply the dynamics related features to some existing machine learning model</p>
+				<p class="slide_item_style1">2. Augment the affinity data and re-train to some existing machine learning model</p>
+				<p class="slide_item_style1">3. Build a feature database for molecule blocks (16 examples in Stage1)</p>
+				<p class="slide_item_style1">4. Develop an efficient algorithm for aligning the target molecule block with retrieved sub-blocks</p>
+				<p class="slide_item_style1">5. Create additional features for feature generation </p>
+<!--				<p class="slide_item_style1">6. Train a voxel-based machine learning model for binding affinity prediction</p>-->
 			</div>
 
 			<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
@@ -937,7 +1051,7 @@
     const repo_url = "https://api.github.com/repos/miemiemmmm/GM_28Jun2023/contents/";
 
     // Set up the picuture of the first slide
-    setupImage("greeting_bgimage", repo_url+"Greeting_page.jpg")
+    // setupImage("greeting_bgimage", repo_url+"Greeting_page.jpg")
 
     var uzh_logo_e_pos_web_main
     var image_section_break
@@ -983,7 +1097,7 @@
                         // Add Grid points
                         const center = [22.0947246 , 36.49708133, 21.81810805];
                         const ls = [24, 24, 24];
-                        const dims = [16, 16, 16];
+                        const dims = [12, 12, 12];
                         renderGridPoints(viewer, center, ls, dims);
                         viewer.addBox({center:{x:center[0], y:center[1] ,z:center[2]},
                             dimensions: {w:ls[0], h:ls[1], d:ls[2]},
