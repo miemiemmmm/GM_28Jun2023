@@ -379,14 +379,14 @@
             <p class="slide-title">Current methods: MD simulation in machine learning </p>
             <div class="slide_content_style1">
 				<img src="/current_MD_method1.png" style="width:100% !important; ">
-                <p class="caption_style" style="width:100% !important; padding-bottom: 30px">Method1: Encode the atoms with their 2D descriptor and 3D descriptor of trajectory</p>
+                <p class="content_subtitle" style="font-size: 15px !important; width:100% !important; padding-bottom: 30px">Method1: Encode the atoms with their 2D descriptor and 3D descriptor of trajectory</p>
 				<img src="/current_MD_method3.png" style="width:100% !important; ">
-				<p class="caption_style" style="width:100% !important;">Method2: For each atom, encode their potential energy \(E_{i}\) with neural network </p>
+				<p class="content_subtitle" style="font-size: 15px !important; width:100% !important;">Method2: For each atom, encode their potential energy \(E_{i}\) with neural network </p>
 
             </div>
 			<div  class="image-style1">
 				<img  src="/current_MD_method2.png" style="width:100% !important; ">
-				<p class="caption_style" style="width:100% !important;">Method3: Encode the 3D coordinate of atoms to RGB chennels of 2D images</p>
+				<p class="content_subtitle" style="width:100% !important;">Method3: Encode the 3D coordinate of atoms to RGB chennels of 2D images</p>
 			</div>
             <p class="reference_style">
 				Ash, Jeremy, and Denis Fourches. "Characterizing the chemical space of ERK2 kinase inhibitors using descriptors computed from molecular dynamics trajectories." Journal of chemical information and modeling 57.6 (2017): 1286-1299.<br>
@@ -406,10 +406,10 @@
 				<p class="slide_item_style1">Predicted results are biased  </p>
             </div>
 			<div  class="image-style1">
-				<img  src="/pafnucy_input.jpeg" style="height:45% !important; "><br>
-				<p>Fig1. Input tensor represented with a 4D tensor for pafnucy</p>
-				<img  src="/gnina_atomdensity.jpeg" style="height:45% !important; ">
-				<p>Fig2. Visualization of atom densities used as input to CNN scoring for Gnina</p>
+				<img  src="/pafnucy_input.jpeg" style="height:40% !important; "><br>
+				<p class="content_subtitle">Fig1. Input tensor represented with a 4D tensor for pafnucy</p>
+				<img  src="/gnina_atomdensity.jpeg" style="height:40% !important; ">
+				<p class="content_subtitle">Fig2. Visualization of atom densities used as input to CNN scoring for Gnina</p>
 			</div>
             <p class="reference_style">
 				Stepniewska-Dziubinska, Marta M., Piotr Zielenkiewicz, and Pawel Siedlecki. "Development and evaluation of a deep learning model for protein–ligand binding affinity prediction." Bioinformatics 34.21 (2018): 3666-3674.<br>
@@ -659,11 +659,25 @@
 		<section data-state="slide_">
             <p class="slide-title">Network architecture</p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1">ImageNet</p>
-                <p class="slide_item_style1">ResNet</p>
-                <p class="slide_item_style1">Personalize network architecture</p>
+				<p class="highlight_style1">General-purpose network architecture</p>
+<!--                <p class="slide_item_style1">ImageNet: First </p>-->
+                <p class="slide_item_style1">ResNet: Solved the vanishing gradient problem enabling very deep network structure</p>
+				<p class="slide_item_style1">DenseNet: improved gradient flow, feature reuse and network efficiency</p>
+                <p class="highlight_style1">Other network architecture</p>
             </div>
-            <p class="reference_style">This is a template reference.</p>
+			<div class="image-style1">
+				<img src="/DenseNet_prediction_method.jpeg" style="width:100% !important;" alt="">
+				<p class="content_subtitle">Fig. DenseNet architecture</p>
+				<img src="/RoseNet_prediction_method.jpeg" style="width:100% !important;">
+				<p class="content_subtitle">Fig. RosENet architecture</p>
+			</div>
+            <p class="reference_style">
+<!--				He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.<br>-->
+<!--				Huang, Gao, et al. "Densely connected convolutional networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.<br>-->
+				Imrie, Fergus, et al. "Protein family-specific models using deep neural networks and transfer learning improve virtual screening and highlight the need for more data." Journal of chemical information and modeling 58.11 (2018): 2319-2330.<br>
+				Hassan-Harrirou, Hussein, Ce Zhang, and Thomas Lemmin. "RosENet: improving binding affinity prediction by leveraging molecular mechanics energies with an ensemble of 3D convolutional neural networks." Journal of chemical information and modeling 60.6 (2020): 2791-2802.<br>
+
+			</p>
         </section>
 
 
@@ -674,7 +688,7 @@
 				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Training material:</span> Trajectories of complexes selected from PDBBind </p>
 				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Trajectory loader:</span> Automation of trajectory array</p>
 				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Molecule-block generator:</span> Identification of sub-block patterns</p>
-				<p class="slide_item_style1"><span style="color:#C58940; font-weight: bold">Featurizer:</span> Transformation of raw trajectories into feature vectors</p>
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Featurizer:</span> Transformation of raw trajectories into feature vectors</p>
 				<p class="slide_item_style1"><span style="color:#C58940; font-weight: bold">Input structure processor:</span> Feature retrieval and pocket reassembly</p>
 				<p class="slide_item_style1"><span style="font-weight: bold">Database depositor:</span> Feature storage, retrieval and comparison</p>
 				<p class="slide_item_style1" style="padding-left: 40px"><span style="color:#285430; font-weight: bold">Temporary solution:</span> HDF (Hierarchical Data Format) file</p>
@@ -682,8 +696,7 @@
 			</div>
 			<div class="image-style1">
 				<figure class="gallery-item gallery-item_style2" style="width: 100% !important;">
-					<img id="img_childmodules" src="/Overall_workflow.jpg" style="width: 100% !important; height: auto; margin-bottom: 50px; ">
-					<!--						<img id="img_childmodules" style="{width: 100% !important; height: auto; margin-bottom: 50px} :hover {transform: scale(1.5) !important} ">-->
+					<img id="img_childmodules" src="/Overall_workflow.jpg" style="width: 100% !important; height: auto; ">
 					<figcaption class="content_subtitle" for="img_childmodules">Fig1. Information flow of trajectory features and the organization of corresponding sub-systems</figcaption>
 				</figure>
 			</div>
@@ -712,15 +725,17 @@
             <ul class="slide_content_style1">
                 <li>Amedeo Caflisch</li>
                 <li>Andreas Vitalis</li>
-                <li>ACGui Developers: </li>
+				<p class="highlight_style1" style="margin-left: -20px !important;">ACGui Developers: </p>
 				<li>Fabian Radler</li>
 				<li>Cassiano Langini</li>
-                <li>All the members in Caflisch group</li>
+				<p class="highlight_style1" style="margin-left: -20px !important;">All the members in Caflisch group</p>
             </ul>
-            <div class="slide_content_style1" style="width:50%">
-            </div>
-            <div class="image-style1">
+<!--            <div class="slide_content_style1" style="width:50%">-->
+<!--            </div>-->
+            <div class="image-style1" style="top:10% !important;">
                 <img id="img_group"  src="/Group_photo.jpg" style="width: 100%; height:auto">
+				<img id="img_group2"  src="/Group_photo2.png" style="width: 100%; height:auto">
+
             </div>
 
         </section>
@@ -1124,24 +1139,9 @@
                         }
                         viewer.rotate(195, {x: 0, y: 1, z: 0});
                         viewer.render();
-
                         window.voxel_box_set = true;
                         window.viewer_RefPDBAndBox = viewer;
                         reset_canvas("slide_RefPDBAndBox", window.viewer_RefPDBAndBox)
-
-						// let angle = 0;
-						// var animate;
-						// animate = setInterval(function() {
-						// 	if (event.currentSlide.getAttribute('data-state') == 'slide_common_methods') {
-						// 		angle += 1;  // Increment the angle
-						// 		if (angle >= 360) angle = 0;  // Reset after a full rotation
-						// 		viewer.rotate(1, {x: 1, y: 1, z: 0});
-						// 		viewer.render();
-						// 	} else {
-						// 		clearInterval(animate)
-						// 	}
-						// }, 100);
-
                     })
             } else {
                 console.log(window.viewer_RefPDBAndBox)
@@ -1152,9 +1152,44 @@
     })
 
 	Reveal.addEventListener('slidechanged', function(event) {
+		if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_ExampleMolBlock') {
+			if ( !window.hasOwnProperty("ExampleMolBlock_set") ) {
+				initPLYObject("mol_block_mesh", repo_url + "example_block2.ply")
+					.then(ret =>{
+							//[scene, renderer, camera, light]
+						}
+					)
+
+				init3DMolObject("mol_block_pdb", repo_url + "example_block2.pdb")
+					.then(viewer => {
+						const centeri = [21.84767489, 44.66006607, 28.9396247 ];
+						const block_ls = [8,8,8];
+						viewer.setStyle({chain:'B'}, {stick: {color: 'red'}});
+
+						viewer.addBox({center:{x:centeri[0], y:centeri[1] ,z:centeri[2]},
+							dimensions: {w:block_ls[0], h:block_ls[1], d:block_ls[2]},
+							color:'#8971d0',
+							opacity:0.7
+						})
+						viewer.render();
+						window.viewer_ExampleMolBlock_set = viewer;
+						window.ExampleMolBlock_set = true
+						// reset_canvas("mol_block_mesh", window.viewer_ExampleMolBlock_set)
+					})
+			}  else {
+				console.log(window.viewer_ExampleMolBlock_set)
+				window.viewer_ExampleMolBlock_set.render()
+				reset_canvas("mol_block_pdb", window.viewer_ExampleMolBlock_set)
+			}
+		}
+	})
+
+
+
+	Reveal.addEventListener('slidechanged', function(event) {
 		if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_FutureWork') {
 			if ( !window.hasOwnProperty("plyset_set") ) {
-				add_PLYObject("final_ply_display", repo_url + "final_plys/tmpzc7n5fhg_final.ply")
+				addPLYtoStage("final_ply_display", repo_url + "final_plys/tmpzc7n5fhg_final.ply")
 					.then(ret =>{
 						var unitoffset = 12
 						add_PLYtoCurrentStage(repo_url + "final_plys/tmp5llzxuex_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,0 ,0])
