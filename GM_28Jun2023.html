@@ -152,6 +152,12 @@
             /*left: 50% !important;*/
 			width: 100% !important;
         }
+		.image-style3{
+            position: absolute !important;
+            top: 60% !important;
+            left: 0% !important;
+			width: 50% !important;
+        }
 
 
         .caption_style{
@@ -443,13 +449,17 @@
 
 
 		<section data-state="slide_">
-            <p class="slide-title">Imporve 3D-based affinity prediction with protein dynamics??? </p>
+            <p class="slide-title">Improve 3D-based affinity prediction with protein dynamics??? </p>
             <div class="slide_content_style1">
                 <p class="slide_item_style1">1. Protein is flexible in natural condition</p>
                 <p class="slide_item_style1">2. Small conformational change could lead to significant change in 3D features</p>
                 <p class="slide_item_style1">3. Molecular dynamics simulation provides a interface to study the protein flexibility and solvent effect</p>
 				<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
             </div>
+			<div class="image-style1">
+				<img src="/example_dynamic_protein.gif" style="width: 75% !important;">
+				<p class="content_subtitle">Fig. Example ligand in molecular dynamics simulation </p>
+			</div>
             <p class="reference_style">This is a template reference.</p>
         </section>
 
@@ -461,22 +471,23 @@
 		</section>
 
 
-		<section data-state="slide_PackageArchetecture">
+		<section data-state="slide_">
 			<p class="slide-title">Feature database construction </p>
 			<!--Attach the representation of the Package Archetecture-->
 			<div class="gallery" style="top:30% !important;">
-				<figure class="gallery-item PackageArchetecture image-gray">
-					<img id="PackageArchetecture_fig1" style="height: 200px !important; " src="/MD_workflow_2.png">
-					<figcaption for="PackageArchetecture_fig1">Fig1: Batch MD simulation using the ACGui</figcaption>
+				<figure class="gallery-item ColorSwapOnHover image-gray">
+					<img style="height: 200px !important; " src="/MD_workflow_2.png">
+					<figcaption>Fig1: Batch MD simulation using the ACGui</figcaption>
 				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray">
-					<img id="PackageArchetecture_fig2" src="/Step1_2_Trajectory_processing_pipeline.jpg">
-					<figcaption for="PackageArchetecture_fig2">Fig2: Automated pipeline for trajectory decomposition</figcaption>
+				<figure class="gallery-item ColorSwapOnHover image-gray">
+					<img src="/Step1_2_Trajectory_processing_pipeline.jpg">
+					<figcaption>Fig2: Automated pipeline for trajectory decomposition</figcaption>
 				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray">
-					<img id="PackageArchetecture_fig3" src="/Step1_3_Example_feature_block.png">
-					<figcaption for="PackageArchetecture_fig3">Fig3: Feature generation, representation, and storage</figcaption>
+				<figure class="gallery-item ColorSwapOnHover image-gray">
+					<img src="/Step1_3_Example_feature_block.png">
+					<figcaption>Fig3: Feature generation, representation, and storage</figcaption>
 				</figure>
+
 			</div>
 		</section>
 
@@ -655,36 +666,23 @@
 
         </section>
 
-		<section data-state="slide_PackageArchetecture2">
+		<section data-state="slide_">
 			<p class="slide-title">Protein dynamics landscape re-construction</p>
 			<div class="gallery" style="top:30% !important;">
-				<figure class="gallery-item PackageArchetecture image-gray" >
-					<img id="PackageArchetecture_fig4" src="/Step2_1_Image_pocket.png">
-					<figcaption for="PackageArchetecture_fig4">Fig1: An example binding pose to predict</figcaption>
+				<figure class="gallery-item ColorSwapOnHover image-gray" >
+					<img src="/Step2_1_Image_pocket.png">
+					<figcaption>Fig1: An example binding pose to predict</figcaption>
 				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray" >
-					<img id="PackageArchetecture_fig5" src="/Step2_2_MBlock_retrieval.jpg">
-					<figcaption for="PackageArchetecture_fig5">Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
+				<figure class="gallery-item ColorSwapOnHover image-gray" >
+					<img src="/Step2_2_MBlock_retrieval.jpg">
+					<figcaption>Fig2: Binding pocket extraction, "molecule block" retrieval and feature reassembly</figcaption>
 				</figure>
-				<figure class="gallery-item PackageArchetecture image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
-					<img id="PackageArchetecture_fig6" style="height: 100% !important; width: 100%" src="/Step_3DCNN_prediction.png">
+				<figure class="gallery-item ColorSwapOnHover image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
+					<img style="height: 100% !important; width: 100%" src="/Step_3DCNN_prediction.png">
 					<figcaption>Fig3: Affinity prediction </figcaption>
 				</figure>
 			</div>
 		</section>
-
-		<section data-state="slide_current_study">
-            <p class="slide-title">Requirements for the dynamics landscape re-construction</p>
-            <div class="slide_content_style1">
-				<p class="slide_item_style1">++++++++++++++++++++++++++++++++++++++++++++++++++</p>
-
-<!--                <p class="slide_item_style1">Robust </p>-->
-				<p class="slide_item_style1">Proper database structure to store the molecule blocks and their features </p>
-				<p class="slide_item_style1">Align the molecule blocks to a correct orientation (Transformation matrix) </p>
-				<p class="slide_item_style1">++++++++++++++++++++++++++++++++++++++++++++++++++</p>
-            </div>
-            <p class="reference_style">This is a template reference.</p>
-        </section>
 
 		<section data-state="slide_PocketReassembleDetails">
 			<p class="slide-title">Pocket reassembly workflow</p>
@@ -726,27 +724,26 @@
             <p class="slide-title">Network architecture</p>
             <div class="slide_content_style1">
 				<p class="highlight_style1">General-purpose network architecture</p>
-<!--                <p class="slide_item_style1">ImageNet: First </p>-->
                 <p class="slide_item_style1">ResNet: Solved the vanishing gradient problem enabling very deep network structure</p>
-				<p class="slide_item_style1">DenseNet: improved gradient flow, feature reuse and network efficiency</p>
+				<p class="slide_item_style1">DenseNet: Improved gradient flow, feature reuse and network efficiency</p>
                 <p class="highlight_style1">Other network architecture</p>
+				<img src="/gnina_networks.jpeg" style="width:80% !important;">
             </div>
+			<div class="image-style3">
+
+			</div>
 			<div class="image-style1">
-				<img src="/DenseNet_prediction_method.jpeg" style="width:100% !important;" alt="">
-				<p class="content_subtitle">Fig. DenseNet architecture</p>
 				<img src="/RoseNet_prediction_method.jpeg" style="width:100% !important;">
-				<p class="content_subtitle">Fig. RosENet architecture</p>
+				<p class="content_subtitle">Fig1. RosENet architecture</p>
+				<img src="/DenseNet_prediction_method.jpeg" style="width:100% !important;" alt="">
+				<p class="content_subtitle">Fig2. DenseNet architecture</p>
 			</div>
             <p class="reference_style">
-<!--				He, Kaiming, et al. "Deep residual learning for image recognition." Proceedings of the IEEE conference on computer vision and pattern recognition. 2016.<br>-->
-<!--				Huang, Gao, et al. "Densely connected convolutional networks." Proceedings of the IEEE conference on computer vision and pattern recognition. 2017.<br>-->
 				Imrie, Fergus, et al. "Protein family-specific models using deep neural networks and transfer learning improve virtual screening and highlight the need for more data." Journal of chemical information and modeling 58.11 (2018): 2319-2330.<br>
 				Hassan-Harrirou, Hussein, Ce Zhang, and Thomas Lemmin. "RosENet: improving binding affinity prediction by leveraging molecular mechanics energies with an ensemble of 3D convolutional neural networks." Journal of chemical information and modeling 60.6 (2020): 2791-2802.<br>
-
+				Francoeur, Paul G., et al. "Three-dimensional convolutional neural networks and a cross-docked data set for structure-based drug design." Journal of chemical information and modeling 60.9 (2020): 4200-4215.
 			</p>
         </section>
-
-
 
 		<section data-state="slide_KeyChildModule">
 			<p class="slide-title">Development of key sub-systems</p>
@@ -866,6 +863,7 @@
 		// Check if image is an HTMLElement (like what's returned by document.getElementById)
 		if (image instanceof HTMLElement) {
 			img = image;
+			console.log("image is an HTMLElement")
 		} else if (typeof image === 'string') {
 			// If it's not, assume it's an id
 			img = document.getElementById(image);
@@ -881,23 +879,25 @@
 			// URL as input
 			const fig_content = await loadImageBase64(figurl);
 			img.src = fig_content;
+		} else if (figurl.length > 0 && figurl.length < 70) {
+			// Image file name as input
+			const fig_content = await loadImageBase64(repo_url + figurl);
+			img.src = fig_content;
 		} else {
 			// Actual file in the root folder as input
 			img.src = figurl;
 		}
     }
 
-
+	// Load all of images in the repo to an object: FIGURES
 	async function getImagesFromRepo() {
 		try {
 			// Get the contents of the repo
 			let response = await fetch(repo_url, {headers: github_auth});
 			let data = await response.json();
-			// Iterate over each file in the repo
+			// Iterate over each file in the repo: 1. Check image; 2. Download and store the image in base64 format
 			for (let file of data) {
-				// Check if the file is an image
 				if (file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg') || file.name.endsWith('.gif')) {
-					// Log the download URL of the image
 					filename = file.name.split('?')[0].split("/")[file.name.split('?')[0].split("/").length-1];
 					FIGURES[filename] = await loadImageBase64(repo_url + filename);
 				}
@@ -907,6 +907,18 @@
 		}
 	}
 
+	// Shortcut function to get the name of an element or an element id;
+	// The <src> attribute of the image should use the name of the image file
+	function getFileName(element){
+		if (typeof element === 'string' || element instanceof String){
+			let elem = document.getElementById(element);
+			// let src_str = elem.src.split("?")[0];
+			return elem.src.split("/")[elem.src.split("/").length-1]
+		} else if (element instanceof HTMLElement){
+			let elem = element;
+			return elem.src.split("/")[elem.src.split("/").length-1]
+		}
+	}
 
     function loadPLYMesh(plycontent, scene, camera, light) {
         // Load PLY file from base64 encoded string and return mesh
@@ -1079,7 +1091,6 @@
 					thecenter= thecenter.map(item => item/mesh_count);
 					console.log("The center is ==>: ", thecenter)
 
-
 					let counter=0
 					scene.traverse(function(meshobject){
 						if (meshobject instanceof THREE.Mesh) {
@@ -1143,36 +1154,21 @@
             window.SetIcon = true
         }
     }
-	function getElemName(element){
-		if (typeof element === 'string' || element instanceof String){
-			let elem = document.getElementById(element);
-			// let src_str = elem.src.split();
-			return elem.src.split("/")[elem.src.split("/").length-1]
-		} else if (element instanceof HTMLElement){
-			let elem = element;
-			return elem.src.split("/")[elem.src.split("/").length-1]
-		}
-	}
-
 
     /////////////////////////////////////////////
     ////////// Set up global variables //////////
     /////////////////////////////////////////////
     const scene_bgcolor = "FFF9DE";
-    const github_auth = {
+    const repo_url = "https://api.github.com/repos/miemiemmmm/GM_28Jun2023/contents/";
+	const github_auth = {
         Authorization: "Bearer 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",
         Accept: "application/vnd.github+object",
     };
 
-    const repo_url = "https://api.github.com/repos/miemiemmmm/GM_28Jun2023/contents/";
+	// Global variables for important images
+    var uzh_logo_e_pos_web_main, image_section_break
 
-    // Set up the background image of the first greeting page
-	var greetingimage_elem = document.getElementById("greeting_bgimage")
-    setupImage(greetingimage_elem, getElemName(greetingimage_elem))
-
-    var uzh_logo_e_pos_web_main
-    var image_section_break
-
+	// Keep the on-initialization function as simple as possible
     (async ()=>{
         // Get UZH logo, presentation symbol and set up the logo for the first page
         uzh_logo_e_pos_web_main = await loadImageBase64(repo_url+"uzh_logo_e_pos_web_main.jpg");
@@ -1181,18 +1177,22 @@
         imgdiv.src = uzh_logo_e_pos_web_main;
         document.body.appendChild(imgdiv);
 
-        image_section_break= await loadImageBase64(repo_url+"section_break.png");
-        // image_symbol = await loadImageBase64(repo_url+"symbol.png");
-        // image1 = await loadImageBase64(repo_url+"im1.png");
-        // image2 = await loadImageBase64(repo_url+"im2.png");
-        // image3 = await loadImageBase64(repo_url+"im3.png");
+		// Set up the background image of the first greeting page
+		let greetingimage_elem = document.getElementById("greeting_bgimage")
+		setupImage(greetingimage_elem, getFileName(greetingimage_elem))
+
+		// Get the section break image (No need to define element src in HTML);
+		image_section_break= await loadImageBase64(repo_url+"section_break.png");
+		console.log("Async functions are done!")
     })()
 
-	var PRELOAD_FIGURES = true
+	const PRELOAD_FIGURES = true
 	var FIGURES = {}
 	if (PRELOAD_FIGURES == true){
 		getImagesFromRepo()
 	}
+
+
 
     /////////////////////////////////////////////
     ///// Initialize the reveal.js framework ////
@@ -1204,6 +1204,9 @@
         transition: 'convex',
     });
 
+	/////////////////////////////////////////////
+	// Define your on-slide-changed functions ///
+	/////////////////////////////////////////////
     Reveal.addEventListener('slidechanged', function(event) {
         if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_common_methods') {
             if ( !window.hasOwnProperty("voxel_box_set") ) {
@@ -1312,8 +1315,6 @@
 		}
 	})
 
-
-
 	Reveal.addEventListener('slidechanged', function(event) {
 		if (event.currentSlide && event.currentSlide.getAttribute('data-state') == 'slide_FutureWork') {
 			if ( !window.hasOwnProperty("plyset_set") ) {
@@ -1369,19 +1370,24 @@
 		}
 	})
 
+	/////////////////////////////////////////////
+	// Finish define on-slide-changed functions//
+	/////////////////////////////////////////////
+	//==================================================//
+
 
     /////////////////////////////////////////////
     ////// Auxiliary and onchange functions /////
     /////////////////////////////////////////////
     Reveal.addEventListener( 'slidechanged', function( event ) {
+		/////////////////////////////////////////////
+		// Check all images in the active slide is loaded or not
+		/////////////////////////////////////////////
 		var images = event.currentSlide.getElementsByTagName('img');
-		// Iterate over each image
 		for (var i = 0; i < images.length; i++) {
 			// Log the src attribute to the console
 			if (images[i].src.length > 0 && images[i].src.length < 75 && ! images[i].src.includes("http")){
-				let imagename = getElemName(images[i]);
-						// images[i].src.split("/")[images[i].src.split("/").length-1];
-
+				let imagename = getFileName(images[i]);
 				if (FIGURES.hasOwnProperty(imagename)){
 					console.log("Setting image from FIGURES variable")
 					images[i].src = FIGURES[imagename];
@@ -1389,20 +1395,8 @@
 					console.log("Setting image with filename (Download): ", imagename);
 			  		setupImage(images[i], repo_url + imagename);
 				}
-
 			}
 		}
-
-        // Add the UZH logo
-        var uzhLogoElement = document.querySelector( '.uzh_logo' );
-        if ( uzhLogoElement ) {
-            uzhLogoElement.src = uzh_logo_e_pos_web_main;
-        } else {
-            var imgdiv = document.createElement( 'img' );
-            imgdiv.classList.add( 'uzh_logo' );
-            imgdiv.src = uzh_logo_e_pos_web_main;
-            document.body.appendChild( imgdiv );
-        }
 
         // Add the footer page number
         var pageNumber = event.indexh + 1;
@@ -1420,30 +1414,31 @@
             document.body.appendChild( pagediv );
         }
 
+		/////////////////////////////////////////////
+		// Add the symbol figure / model
+		/////////////////////////////////////////////
         var symbol_fig = document.querySelector( '.symbol_fig' );
-        if ( symbol_fig ) {
-            // symbol_fig.src = image_symbol
-        } else {
+        if ( ! symbol_fig ) {
             var symboldiv = document.createElement( 'div' );
             symboldiv.classList.add( 'symbol_fig' );
             symboldiv.id = "symbol_fig";
-            // symboldiv.src = image_symbol;
-            symboldiv.style.width  = '120px';   // Set the width
+            // symboldiv.src = image_symbol;    // Either a image or a 3D model
+            symboldiv.style.width  = '120px';   // Set the width and height
             symboldiv.style.height = '120px';
             symboldiv.style.zIndex = 0
             document.body.appendChild(symboldiv)
             renderSymbol()
         }
 
-
-        const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
-        const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        // const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        // const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
         // console.log("ViewPort Width:", viewportWidth, "/ Height", viewportHeight);
         // $("#slide_container").css({"width": String(viewportWidth*0.45)+"px"})
 
 
-
-        // setup break slide
+		/////////////////////////////////////////////
+        // Update the background image of the chapter break slides
+		/////////////////////////////////////////////
         var found_chapterbreak = event.currentSlide.querySelector( '.chapter_break_container' );
         var found_chapterbreakimg = event.currentSlide.querySelector( '.chapter_break_container img' );
         if ( found_chapterbreak && found_chapterbreakimg.src.slice(0,4) !== "data") {
@@ -1461,7 +1456,9 @@
         }
     });
 
+	/////////////////////////////////////////////
     // Laser pointer function for the slides
+	/////////////////////////////////////////////
     const laserPointer = document.querySelector('.laser-pointer');
     var usingLaser = false;
     // Enable/disable the laser pointer on holding the 'L' key (key code 76)
@@ -1487,6 +1484,10 @@
         }
     });
 
+	/////////////////////////////////////////////
+	// Set the focus of the gallery images
+	/////////////////////////////////////////////
+	// Zoom in and prioritize the image on hover
     $(".gallery-item").hover(
         function() {
             $(this).css({"z-index": 999})
@@ -1495,6 +1496,22 @@
             $(this).css({"z-index": 0})
         }
     );
+	// Swap color(from gray-scale) the specific class name: ColorSwapOnHover
+	$(".gallery-item").hover(
+		function() {
+			if ($(this).hasClass('ColorSwapOnHover')){
+				console.log("Remove gray")
+				$(this).removeClass('image-gray');
+			}
+		},
+		function() {
+			if ($(this).hasClass('ColorSwapOnHover')) {
+				console.log("Add back gray")
+				$(this).addClass('image-gray');
+			}
+		}
+	);
+
 </script>
 
 </body>
