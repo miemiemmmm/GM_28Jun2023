@@ -306,7 +306,7 @@
             <p class="slide-title">Outline</p>
             <div class="slide_content_style1" style="width: 100% !important;">
                 <p class="slide_item_style1" style="padding-left: 10%; ">1. Introduction </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">2. Current methods: binding affintiy prediction </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">2. Current methods: binding affinity prediction </p>
 				<p class="slide_item_style1" style="padding-left: 10%; ">3. Data-driven method to re-construct the binding pocket landscape </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">4. Augmenting prediction with molecular dynamics data </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">5. Progress and future work </p>
@@ -319,7 +319,7 @@
 
 		<section data-state="">
 			<div class="chapter_break_container">
-				<p class="chapter_break">Current methods: binding affintiy prediction</p>
+				<p class="chapter_break">Current methods: binding affinity prediction</p>
 				<img title="Needed for the ">
 			</div>
 		</section>
@@ -405,7 +405,7 @@
         </section>
 
 		<section data-state="slide_">
-            <p class="slide-title">3D voxel-based binding affintiy prediction</p>
+            <p class="slide-title">3D voxel-based binding affinity prediction</p>
             <div class="slide_content_style1">
                 <p class="slide_item_style1">Training set: PDBBind-refined set is used as high quality training dataset and test set</p>
 				<p class="slide_item_style1">Learning method: 3D convolutional neural network</p>
@@ -532,10 +532,10 @@
 			<p class="slide-title">Feature interpolation from coordinates to mesh grids</p>
 			<!--Attach the function to interpolate and the method to distribute features -->
 			<div class="slide_content_style1">
-				<p class="slide_item_style1">1. Initialize a grid on top of each molecule block and create a Kd-tree for neighbor search</p>
+				<p class="slide_item_style1">1. Initialize a grid over each molecule block and create a Kd-tree for neighbor search</p>
 				<p class="slide_item_style1">2. Select a coordinate and query the grid point within a specified distance</p>
 				<p class="slide_item_style1">3. Rasterize the "weight" of the coordinate (e.g. atomic mass) using Gaussian: <br><span style="padding-left:100px">\(w_i = \frac{w_0}{\sigma \sqrt{2\pi}}exp\left(-\frac{\left(r_i-r_0\right)^2}{\sigma^2}\right)\)</span> </p>
-				<p class="slide_item_style1" style="padding-left: 20px !important; ">where \(r_i\) is the grid point coordinate and the \(r_0\) is the reference atom coordinate, \(w_0\) is the feature weight of that atom, and \(\sigma\) is the smoothness of the interpolation </p>
+<!--				<p class="slide_item_style1" style="padding-left: 20px !important; ">where \(r_i\) is the grid point coordinate and the \(r_0\) is the reference atom coordinate, \(w_0\) is the feature weight of that atom, and \(\sigma\) is the smoothness of the interpolation </p>-->
 				<p class="slide_item_style1">4. Repeat steps 2 and 3 until all atoms in the bounding box are processed </p>
 			</div>
 			<div class="image-style1">
@@ -552,10 +552,14 @@
 			<p class="slide-title">Molecule block embedding</p>
 			<!-- Attach a picture of several residues inside a box -->
 			<div class="slide_content_style1">
+				<p class="slide_item_style1 highlight_style1" style="margin-bottom: 10px !important; ">
+					The fingerprint has to be equalvariant to rotation and translation
+				</p>
 				<p class="slide_item_style1">1. Topological, chemical, and geometric features are concatenated to represent a single segment</p>
-				<p class="slide_item_style1">2. The molecular surface is computed to obtain the geometric feature of each segment</p>
-				<p class="slide_item_style1">3. Each segment's triangle mesh is down-sampled to ~600 points and point cloud is saved for further registration</p>
-				<p class="slide_item_style1">4. Join viewpoint components (VFH algorithm, will discuss later) to register the relative positions between segments</p>
+				<p class="slide_item_style1">2. Six segment vectors are concatenated to represent a molecule block</p>
+				<p class="slide_item_style1">3. The geometric feature is computed by segments' molecular surface</p>
+				<p class="slide_item_style1">4. Each molecular surface is down-sampled (as point clouds) and saved for further use</p>
+				<p class="slide_item_style1">5. Viewpoint components (discuss later) represent the relative positions between segments</p>
 <!--					<p class="slide_item_style1">4. The feature vectors of each segment are ultimately joined by their "relative position" features</p>-->
 			</div>
 
@@ -592,8 +596,8 @@
             <div class="slide_content_style1">
 				<p class="slide_item_style1 highlight_style1" style="margin-bottom: 10px !important; ">Robust and specific substructure fingerprint for similarity computaiton </p>
                 <p class="slide_item_style1">Viewpoint Feature Histogram (VFH) is suitable for object recognition and pose identification</p>
-                <p>This is a Template Main Context2</p>
-                <p>This is a Template Main Context3</p>
+                <p class="slide_item_style1">Viewpoint component might help the feature vector comparison rotational invariant</p>
+                <p class="slide_item_style1"></p>
             </div>
 
 			<div class="image-style1">
@@ -604,10 +608,14 @@
 				<img src="/VFH_sig.png" alt="" style="width:75% !important; ">
 				<p class="content_subtitle">Fig2. Viewpoint Feature Histogram (VFH) signatures of two different poses</p>
 			</div>
+			<p class="reference_style">
+				Rusu, Radu Bogdan, et al. "Fast 3d recognition and pose using the viewpoint feature histogram." 2010 IEEE/RSJ International Conference on Intelligent Robots and Systems. IEEE, 2010.<br>
+				Sidor, Kamil, and Marian Wysocki. "Recognition of human activities using depth maps and the viewpoint feature histogram descriptor." Sensors 20.10 (2020): 2940.
+			</p>
         </section>
 
 		<section data-state="slide_">
-            <p class="slide-title">Computation of structural similarity from fingerprint</p>
+            <p class="slide-title">Compute structural similarity from fingerprint</p>
             <div class="slide_content_style1">
 				<p class="slide_item_style1 highlight_style1" style="margin-bottom: 10px !important; ">
 					Require a robust metric to measure the similarity between two molecule blocks
@@ -652,12 +660,13 @@
 			<!--Page 17-->
             <p class="slide-title">Binding affinity data augmentation workflow</p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1">Step 1: Set the box sized ~20 \(Å^{3}\) with resolution of 1Å to 0.5Å</p>
-                <p class="slide_item_style1">Step 2: Align the box to the geometric center of ligand</p>
-                <p class="slide_item_style1">Step 3: Compute the time-serie of closest-atom-pairs distances </p>
-				<p class="slide_item_style1">Step 4: For each representative frames, compute the panelty to the mean distance</p>
-				<p class="slide_item_style1">Step 5: Label those frames by \(L = K_{i/d} \times p\)</p>
-				<p class="slide_item_style1">Step 6: Store the feature vectors/labels to database as training dataset</p>
+                <p class="slide_item_style1">Step 1: Load trajectories to a trajectory loader and register features to compute</p>
+                <p class="slide_item_style1">Step 2: Set the box size to ~20\(Å^{3}\) with grid resolution of ~0.5Å; Align it to the center of ligand</p>
+                <p class="slide_item_style1">Step 3: Compute the time series of closest-atom-pairs distances (CAPD) </p>
+				<p class="slide_item_style1">Step 4: For each representative frames, compute the penalty by its deviation from CAPD</p>
+				<p class="slide_item_style1">Step 5: Label frames by </p>
+				<p class="slide_item_style1" style="text-align: center !important;">\(L = K_{i/d} \times (1-p)\)</p>
+				<p class="slide_item_style1">Step 6: Store the feature vectors and labels to database as training dataset</p>
             </div>
 			<div class="image-style1">
 				<img src="/Augment_current_methods.jpg" style="height:90% !important;">
@@ -679,7 +688,7 @@
 				</figure>
 				<figure class="gallery-item ColorSwapOnHover image-gray gallery-item_style4" style="height: auto !important; width: 30% !important; ">
 					<img style="height: 100% !important; width: 100%" src="/Step_3DCNN_prediction.png">
-					<figcaption>Fig3: Affinity prediction </figcaption>
+					<figcaption>Fig3: Affinity prediction via machine learning model (3D-CNN) </figcaption>
 				</figure>
 			</div>
 		</section>
@@ -687,11 +696,11 @@
 		<section data-state="slide_PocketReassembleDetails">
 			<p class="slide-title">Pocket reassembly workflow</p>
 			<div class="slide_content_style1">
-				<p class="slide_item_style1">1. Extract the binding site from the protein-ligand interface and establish its corresponding mesh grid </p>
-				<p class="slide_item_style1">2. Sample sub-blocks within the bounding box and retrieve features from feature database  </p>
-				<p class="slide_item_style1">3. Retain sub-blocks with similarity scores below a specific threshold </p>
-				<p class="slide_item_style1">4. Obtain the transformation matrix through geometric alignment </p>
-				<p class="slide_item_style1">5. Apply the transformation matrix to the sub-block feature and align to the target structure</p>
+				<p class="slide_item_style1">Step 1. Extract the binding site at the interface and establish the corresponding mesh grid </p>
+				<p class="slide_item_style1">Step 2. Sample sub-blocks within the bounding box and retrieve features from database  </p>
+				<p class="slide_item_style1">Step 3. Retain sub-blocks with similarity greater than a threshold (~0.9) </p>
+				<p class="slide_item_style1">Step 4. Align the two sub-blocks and obtain the transformation matrix </p>
+				<p class="slide_item_style1">Step 5. Transform the feature coordinate and map voxels to the target mesh grid</p>
 			</div>
 			<div class="image-style1">
 				<img id="img_pocket_assemble" src="/Step2_2_MBlock_retrieval.jpg" style="width: 100%; ">
@@ -702,14 +711,16 @@
 
 
 		<section data-state="slide_ICPRegistration">
-			<p class="slide-title">Transformation matrix generation</p>
+			<p class="slide-title">Align feature vectors</p>
 			<div class="slide_content_style1">
-				<p class="slide_item_style1">Iterative closest point (ICP) is a widely-used method for aligning two sets of points or point clouds</p>
-				<p class="slide_item_style1">By inputting a target point set and a source point cloud, the output is a refined transformation matrix that aligns these two point clouds</p>
+				<p class="slide_item_style1"><span style="font-weight: bold;">Iterative closest point (ICP)</span> is a widely-used method for aligning two point clouds</p>
+				<p class="slide_item_style1"><span style="font-weight: bold;">Point cloud</span> is stored when depositing the feature vectors into the database</p>
 				<p class="slide_item_style1">Two main steps are iterated during point cloud registration: </p>
-				<p class="slide_item_style1" style="padding-left: 20px; ">1. Find correspondence set \(\kappa = \{(p,q)\}\) from target points \(P\), and source point cloud \(Q\) </p>
+				<p class="slide_item_style1" style="padding-left: 20px; ">1. Find correspondence set \(\kappa = \{(p,q)\}\) from target point cloud \(P\), and source point cloud \(Q\) </p>
 				<p class="slide_item_style1" style="padding-left: 20px; ">2. Update the transformation matrix by minimizing an objective function. </p>
-				<p class="slide_item_style1">For example, the objective function of point-to-point ICP algorithm is \(E(T) = \sum_{(p,q)\in\kappa}{\left\|p-Tq \right\|^2}\) </p>
+				<p class="slide_item_style1">For example, the objective function of Point-to-Point ICP algorithm is  </p>
+				<p class="slide_item_style1" style="text-align: center !important;">\(E(T) = \sum_{(p,q)\in\kappa}{\left\|p-Tq \right\|^2}\)</p>
+<!--				<p class="slide_item_style1">The output is a refined transformation matrix (Rotation matrix + translation)</p>-->
 			</div>
 
 			<div class="image-style1">
@@ -725,18 +736,19 @@
             <div class="slide_content_style1">
 				<p class="highlight_style1">General-purpose network architecture</p>
                 <p class="slide_item_style1">ResNet: Solved the vanishing gradient problem enabling very deep network structure</p>
-				<p class="slide_item_style1">DenseNet: Improved gradient flow, feature reuse and network efficiency</p>
+				<p class="slide_item_style1">DenseNet: Improved gradient flow, feature reuse, and network efficiency</p>
                 <p class="highlight_style1">Other network architecture</p>
 				<img src="/gnina_networks.jpeg" style="width:80% !important;">
+				<p class="content_subtitle" style="text-align: center !important">Fig3. Network architecture used in Gnina</p>
             </div>
 			<div class="image-style3">
 
 			</div>
 			<div class="image-style1">
 				<img src="/RoseNet_prediction_method.jpeg" style="width:100% !important;">
-				<p class="content_subtitle">Fig1. RosENet architecture</p>
-				<img src="/DenseNet_prediction_method.jpeg" style="width:100% !important;" alt="">
-				<p class="content_subtitle">Fig2. DenseNet architecture</p>
+				<p class="content_subtitle">Fig1. input features used in RosENet (based on ResNet)</p>
+				<img src="/DenseNet_prediction_method.jpeg" style="margin-top:20px; width:100% !important;" alt="">
+				<p class="content_subtitle">Fig2. Schematic of the DenseNet architecture in a model</p>
 			</div>
             <p class="reference_style">
 				Imrie, Fergus, et al. "Protein family-specific models using deep neural networks and transfer learning improve virtual screening and highlight the need for more data." Journal of chemical information and modeling 58.11 (2018): 2319-2330.<br>
@@ -746,21 +758,22 @@
         </section>
 
 		<section data-state="slide_KeyChildModule">
-			<p class="slide-title">Development of key sub-systems</p>
+			<p class="slide-title">Development of key subsystems</p>
 			<div class="slide_content_style1">
 				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Training material:</span> Trajectories of complexes selected from PDBBind </p>
-				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Trajectory loader:</span> Automation of trajectory array</p>
-				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Molecule-block generator:</span> Identification of sub-block patterns</p>
-				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Featurizer:</span> Transformation of raw trajectories into feature vectors</p>
-				<p class="slide_item_style1"><span style="color:#C58940; font-weight: bold">Input structure processor:</span> Feature retrieval and pocket reassembly</p>
-				<p class="slide_item_style1"><span style="font-weight: bold">Database depositor:</span> Feature storage, retrieval and comparison</p>
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Trajectory loader:</span> Arrayify trajectories and automate featurization pipeline</p>
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Molecule block generator:</span> Crop arbitrary molecule blocks </p>
+<!--				Fingerprint of molecule blocks-->
+				<p class="slide_item_style1"><span style="color:#285430; font-weight: bold">Featurizer:</span> Transform molecule blocks into feature vectors</p>
+				<p class="slide_item_style1"><span style="font-weight: bold">Database depositor:</span> Feature vector storage, retrieval, and comparison</p>
 				<p class="slide_item_style1" style="padding-left: 40px"><span style="color:#285430; font-weight: bold">Temporary solution:</span> HDF (Hierarchical Data Format) file</p>
-				<p class="slide_item_style1"><span style="font-weight: bold">Neural network:</span> Prediction of the binding affinity</p>
+				<p class="slide_item_style1"><span style="color:#C58940; font-weight: bold">Input structure processor:</span> Feature retrieval and pocket reassembly</p>
+				<p class="slide_item_style1"><span style="font-weight: bold">Neural network:</span> Predict binding affinities</p>
 			</div>
 			<div class="image-style1">
 				<figure class="gallery-item gallery-item_style2" style="width: 100% !important;">
 					<img id="img_childmodules" src="/Overall_workflow.jpg" style="width: 100% !important; height: auto; ">
-					<figcaption class="content_subtitle" for="img_childmodules">Fig1. Information flow of trajectory features and the organization of corresponding sub-systems</figcaption>
+					<figcaption class="content_subtitle" for="img_childmodules">Fig. Overall workflow of trajectory featurization and machine learning model training, and the organization of corresponding sub-systems</figcaption>
 				</figure>
 			</div>
 		</section>
@@ -768,12 +781,11 @@
 		<section data-state="slide_FutureWork">
 			<p class="slide-title">Future Work</p>
 			<div class="slide_content_style1">
-				<p class="slide_item_style1">1. Apply the dynamics related features to some existing machine learning model</p>
-				<p class="slide_item_style1">2. Augment the affinity data and re-train to some existing machine learning model</p>
-				<p class="slide_item_style1">3. Build a feature database for molecule blocks (16 examples in Stage1)</p>
-				<p class="slide_item_style1">4. Develop an efficient algorithm for aligning the target molecule block with retrieved sub-blocks</p>
-				<p class="slide_item_style1">5. Create additional features for feature generation </p>
-<!--				<p class="slide_item_style1">6. Train a voxel-based machine learning model for binding affinity prediction</p>-->
+				<p class="slide_item_style1">1. Augment ligand affinity data with molecular dynamics trajectory</p>
+				<p class="slide_item_style1">2. Re-train some existing machine learning models with the augmented data</p>
+				<p class="slide_item_style1">3. Build a feature database for molecule block storage/retrieval (16 examples in Stage1)</p>
+				<p class="slide_item_style1">4. Develop an efficient algorithm for aligning two molecule blocks</p>
+				<p class="slide_item_style1">5. Add more registrable features in the trajectory processing pipeline</p>
 			</div>
 
 			<div style="position: absolute; top:20%; left:50%; width:450px !important; height: 450px !important">
@@ -1070,82 +1082,55 @@
     }
 
     async function renderSymbol(obj_list) {
+
         if (! window.SetIcon) {
             scene_info = initPLYObject("symbol_fig", repo_url+"symbol_mesh.ply").then(function(ret){
-
-                scene_info = addPLYtoStage(repo_url+"symbol_surface.ply", ret[0], ret[1],ret[2], ret[3], [0,0,0]).then(function (ret){
-                    var scene = ret[0]
-                    var renderer = ret[1]
-                    var camera = ret[2]
-					let thecenter = [0,0,0]
-					let mesh_count = 0
+                scene_info = addPLYtoStage(repo_url+"symbol_surface.ply", ret[0], ret[1],ret[2], ret[3], [0,0,0])
+				.then (ret=>{
+					const scene = ret[0]
+					const renderer = ret[1]
+					const camera = ret[2]
+					let c = 0
 					scene.traverse(function(meshobject){
-						if (meshobject instanceof THREE.Mesh) {
-							tmpcenter = meshobject.geometry.boundingBox.getCenter(new THREE.Vector3());
-							thecenter[0] += tmpcenter.x
-							thecenter[1] += tmpcenter.y
-							thecenter[2] += tmpcenter.z
-							mesh_count += 1
+						if (meshobject instanceof THREE.Mesh){
+							console.log("The object is ============>: ", meshobject)
+							meshobject.geometry.center()
+							c += 1
+							console.log(meshobject.position)
+							camera.position.set(meshobject.position.x, meshobject.position.y, meshobject.position.z+15);
+							camera.lookAt(meshobject.position);
+							camera.updateProjectionMatrix();
+							// 		meshobject.translateX(thecenter[0])
+							// 		meshobject.translateY(thecenter[1])
+							// 		meshobject.translateZ(thecenter[2])
 						}
 					})
-					thecenter= thecenter.map(item => item/mesh_count);
-					console.log("The center is ==>: ", thecenter)
-
-					let counter=0
-					scene.traverse(function(meshobject){
-						if (meshobject instanceof THREE.Mesh) {
-							centerx = meshobject.position
-							// centerx = meshobject.geometry.boundingBox.getCenter(new THREE.Vector3());
-							console.log("The center is before translate: ", centerx)
-							meshobject.translateX(thecenter[0])
-							meshobject.translateY(thecenter[1])
-							meshobject.translateZ(thecenter[2])
-							meshobject.geometry.computeBoundingBox();
-							centerx = meshobject.position
-							console.log("The center is after translate: ", centerx)
-							// camera.position.set(meshobject.position.x, meshobject.position.y, meshobject.position.z+15);
-							// camera.lookAt(meshobject.position)
-							// camera.updateProjectionMatrix()
-							// counter += 1;
-						}
-					})
-					scene.traverse(function(meshobject){
-						if (meshobject instanceof THREE.Mesh) {
-							console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
-							// meshobject.position.x += thecenter.x;
-							// meshobject.position.y += thecenter.y;
-							// meshobject.position.z += thecenter.z;
-							console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
-							thecenter = meshobject.geometry.boundingBox.getCenter(new THREE.Vector3());
-							console.log("The center is: ", thecenter)
-							console.log(meshobject.rotation)
-						}
-					})
-
-					// camera.position.set(thecenter.x, thecenter.y, thecenter.z+5);
-					// camera.position.set(0, 0, 20);
-					// camera.lookAt(0,0,0);
-					// camera.lookAt(thecenter.x, thecenter.y, thecenter.z);
-
+					return ret
+				})
+				.then(function (ret){
+                    const scene = ret[0]
+                    const renderer = ret[1]
+                    const camera = ret[2]
 
                     function animate() {
                         requestAnimationFrame(animate);
-                        const time = (performance.now() * 0.0005) % 3 + 0.5;
+                        const time = (performance.now() * 0.0005) % 3 + 1.5;
 						let c = 0;
+						let posit;
                         scene.traverse(function(meshobject) {
 							if (meshobject instanceof THREE.Mesh) {
-								meshobject.rotation.z = 0.05;
+								meshobject.rotation.z += 0.005*time;
 								meshobject.rotation.y += time*0.004;
-
+								posit = meshobject.position
 								if (c==1){
 									meshobject.material.color = new THREE.Color(0x71EFA3);
 									meshobject.material.transparent = true;
 									meshobject.material.opacity = 0.75;
-									// console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
 								}
 								c+=1
 							}
                         });
+						camera.lookAt(posit);
                         renderer.render(scene, camera);
                     }
                     animate()
@@ -1264,32 +1249,59 @@
 				initPLYObject("mol_block_mesh", repo_url + "example_block2.ply")
 					.then(ret =>{
 						const scene = ret[0];
+						const camera = ret[2];
+						scene.traverse(function(meshobject) {
+							if (meshobject instanceof THREE.Mesh) {
+								// console.log(meshobject.position)
+								meshobject.geometry.center();
+								// meshobject.position.set(meshobject.position.x, meshobject.position.y, meshobject.position.z);
+								// meshobject.translate.x -= meshobject.position.x;
+								// meshobject.translate.y -= meshobject.position.y;
+								// meshobject.translate.z -= meshobject.position.z;
+								// console.log(meshobject.position)
+								// console.log(meshobject.position.x, meshobject.position.y, meshobject.position.z)
+								camera.position.set(meshobject.position.x, meshobject.position.y, meshobject.position.z+10);
+								camera.lookAt(meshobject.position.x, meshobject.position.y, meshobject.position.z);
+							}
+						});
+						camera.updateProjectionMatrix();
+						return ret
+					})
+					// .then(ret=>{
+					// 	const scene = ret[0];
+					// 	var geometry = new THREE.SphereGeometry(1, 32, 32); // Parameters are radius, width segments, height segments
+					// 	var material = new THREE.MeshBasicMaterial({color: 0xff0000}); // Red color
+					// 	// Create the sphere mesh
+					// 	var sphere = new THREE.Mesh(geometry, material);
+					// 	// Set the sphere position to the origin
+					// 	sphere.position.set(0, 0, 0);
+					// 	// Add the sphere to the scene
+					// 	scene.add(sphere);
+					// })
+					.then(ret =>{
+						const scene = ret[0];
 						const renderer = ret[1];
 						const camera = ret[2];
 						const light = ret[3];
 						function animate() {
 							requestAnimationFrame(animate);
 							const time = (performance.now() * 0.0005) % 3 + 0.5;
-							let c = 0;
+							var focuspoint;
 							scene.traverse(function(meshobject) {
 								if (meshobject instanceof THREE.Mesh) {
-									meshobject.rotation.z = 0.05;
-									meshobject.rotation.y += time*0.004;
-
-									if (c==1){
-										meshobject.material.color = new THREE.Color(0x71EFA3);
-										meshobject.material.transparent = true;
-										meshobject.material.opacity = 0.75;
-										// console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
-									}
-									c+=1
+									meshobject.rotation.y += 0.005;
+									meshobject.rotation.z += time*0.004;
+									focuspoint = meshobject.position;
 								}
 							});
+							camera.lookAt(focuspoint);
+							// camera.updateProjectionMatrix();
 							renderer.render(scene, camera);
 						}
 						animate()
-
+						return ret
 					})
+
 
 				init3DMolObject("mol_block_pdb", repo_url + "example_block2.pdb")
 					.then(viewer => {
@@ -1425,7 +1437,7 @@
             // symboldiv.src = image_symbol;    // Either a image or a 3D model
             symboldiv.style.width  = '120px';   // Set the width and height
             symboldiv.style.height = '120px';
-            symboldiv.style.zIndex = 0
+            symboldiv.style.zIndex = 100
             document.body.appendChild(symboldiv)
             renderSymbol()
         }
