@@ -287,8 +287,9 @@
             <img id="greeting_bgimage" src="/interval_background.png" style="position: absolute; top:10px; right:-300px; opacity:0.25; transform: rotate(-30deg); filter: blur(2px); height: 700px; width: auto;">
             <div style="position:relative; height:300px; width:100%; top:5%"><p class="presentation_title" style="top:50px; width:100%">Improving molecular interaction recognition with molecular dynamics</p></div>
             <p class="presentation_title2">Yang Zhang</p>
-            <p class="presentation_title2">Caflisch group Meeting</p>
-            <p class="presentation_title2">28 June, 2023</p>
+            <p class="presentation_title2">28\(^{th}\) June, 2023</p>
+			<p class="presentation_title2">Caflisch group Meeting</p>
+			<p class="presentation_title2">Department of Biochemistry, UZH</p>
         </section>
 
         <!--Template page-->
@@ -306,7 +307,7 @@
             <p class="slide-title">Outline</p>
             <div class="slide_content_style1" style="width: 100% !important;">
                 <p class="slide_item_style1" style="padding-left: 10%; ">1. Introduction </p>
-                <p class="slide_item_style1" style="padding-left: 10%; ">2. Current methods: binding affinity prediction </p>
+                <p class="slide_item_style1" style="padding-left: 10%; ">2. Interface between ML and affinity prediction / MD simulation </p>
 				<p class="slide_item_style1" style="padding-left: 10%; ">3. Data-driven method to re-construct the binding pocket landscape </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">4. Augmenting prediction with molecular dynamics data </p>
                 <p class="slide_item_style1" style="padding-left: 10%; ">5. Progress and future work </p>
@@ -317,15 +318,10 @@
             </div>
         </section>
 
-		<section data-state="">
-			<div class="chapter_break_container">
-				<p class="chapter_break">Current methods: binding affinity prediction</p>
-				<img title="Needed for the ">
-			</div>
-		</section>
+
 
         <section data-state="slide_VoxelBasedMethod">
-			<p class="slide-title">Current methods: Graph and 3D voxel methods</p>
+			<p class="slide-title">Introduction to Graph-based and 3D voxel-based methods</p>
 			<div class="slide_content_style1">
 				<table>
 					<tr>
@@ -384,6 +380,13 @@
 			</p>
 		</section>
 
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Interface between ML and affinity prediction / MD simulation</p>
+				<img title="Needed for the ">
+			</div>
+		</section>
+
 		<section data-state="slide_">
             <p class="slide-title">Current methods: MD simulation in machine learning </p>
             <div class="slide_content_style1">
@@ -411,8 +414,8 @@
 				<p class="slide_item_style1">Learning method: 3D convolutional neural network</p>
 				<p class="slide_item_style1">Feature engineering: Both simple and complex features are used differently</p>
 				<p class="slide_item_style1">Feature engineering: Different combinations/arrangement of features</p>
-
-				<p class="slide_item_style1">Predicted results are biased  </p>
+				<p class="highlight_style1">Predicted results are biased</p>
+				<p class="highlight_style1">No shared architecture for systematic tests</p>
             </div>
 			<div  class="image-style1">
 				<img  src="/pafnucy_input.jpeg" style="height:40% !important; "><br>
@@ -449,18 +452,17 @@
 
 
 		<section data-state="slide_">
-            <p class="slide-title">Improve 3D-based affinity prediction with protein dynamics??? </p>
+            <p class="slide-title">Improve the prediction with protein dynamics </p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1">1. Protein is flexible in natural condition</p>
+                <p class="slide_item_style1">1. Protein is flexible in natural condition and soaked in solvent</p>
                 <p class="slide_item_style1">2. Small conformational change could lead to significant change in 3D features</p>
                 <p class="slide_item_style1">3. Molecular dynamics simulation provides a interface to study the protein flexibility and solvent effect</p>
-				<p class="slide_item_style1">4. This map enables predictions for static configurations via the detour of predicting dynamic features</p>
+				<p class="slide_item_style1">4. Dynamics features for static atomic configurations might enable predicting dynamic features</p>
             </div>
 			<div class="image-style1">
 				<img src="/example_dynamic_protein.gif" style="width: 75% !important;">
 				<p class="content_subtitle">Fig. Example ligand in molecular dynamics simulation </p>
 			</div>
-            <p class="reference_style">This is a template reference.</p>
         </section>
 
 		<section data-state="">
@@ -506,7 +508,10 @@
 					<figcaption class="content_subtitle" for="traj_prep">Fig. Workflow of the ACGui batch MD simulation. </figcaption>
 				</figure>
 			</div>
-			<p class="reference_style">Ranjan, Chitta, Samaneh Ebrahimi, and Kamran Paynabar. "Sequence graph transform (SGT): A feature embedding function for sequence data mining." arXiv preprint arXiv:1608.03533 (2016).</p>
+			<p class="reference_style">
+				Liu, Zhihai, et al. "Forging the basis for developing protein–ligand interaction scoring functions." Accounts of chemical research 50.2 (2017): 302-309.<br>
+				Ranjan, Chitta, Samaneh Ebrahimi, and Kamran Paynabar. "Sequence graph transform (SGT): A feature embedding function for sequence data mining." arXiv preprint arXiv:1608.03533 (2016).
+			</p>
 		</section>
 
 		<section data-state="slide_ExampleMolBlock">
@@ -517,7 +522,7 @@
 				<p class="slide_item_style1">2. Atoms from consecutive residues (within N residues) are considered to be in one segment </p>
 				<p class="slide_item_style1">3. For the computation of chemical features, full residues are maintained if at least one atom falls into the bounding box (Stage1)</p>
 				<p class="slide_item_style1">4. Segments are ordered from the most atoms to the least atoms (Stage2)</p>
-				<p class="slide_item_style1">5. Each segment computes multiple types of descriptors (topological, chemical and geometric) </p>
+				<p class="slide_item_style1">5. Each segment computes multiple types of descriptors as fingerprint(topological, chemical and geometric) </p>
 
 			</div>
 			<div class="image-style1" style="top:10% !important; ">
@@ -660,7 +665,7 @@
 			<!--Page 17-->
             <p class="slide-title">Binding affinity data augmentation workflow</p>
             <div class="slide_content_style1">
-                <p class="slide_item_style1">Step 1: Load trajectories to a trajectory loader and register features to compute</p>
+                <p class="slide_item_style1">Step 1: Load trajectories to a trajectory loader and register needed features </p>
                 <p class="slide_item_style1">Step 2: Set the box size to ~20\(Å^{3}\) with grid resolution of ~0.5Å; Align it to the center of ligand</p>
                 <p class="slide_item_style1">Step 3: Compute the time series of closest-atom-pairs distances (CAPD) </p>
 				<p class="slide_item_style1">Step 4: For each representative frames, compute the penalty by its deviation from CAPD</p>
@@ -746,16 +751,23 @@
 			</div>
 			<div class="image-style1">
 				<img src="/RoseNet_prediction_method.jpeg" style="width:100% !important;">
-				<p class="content_subtitle">Fig1. input features used in RosENet (based on ResNet)</p>
+				<p class="content_subtitle">Fig1. Input features used in RosENet (based on ResNet)</p>
 				<img src="/DenseNet_prediction_method.jpeg" style="margin-top:20px; width:100% !important;" alt="">
 				<p class="content_subtitle">Fig2. Schematic of the DenseNet architecture in a model</p>
 			</div>
-            <p class="reference_style">
+            <p class="reference_style" style="margin-bottom: -45px !important">
 				Imrie, Fergus, et al. "Protein family-specific models using deep neural networks and transfer learning improve virtual screening and highlight the need for more data." Journal of chemical information and modeling 58.11 (2018): 2319-2330.<br>
 				Hassan-Harrirou, Hussein, Ce Zhang, and Thomas Lemmin. "RosENet: improving binding affinity prediction by leveraging molecular mechanics energies with an ensemble of 3D convolutional neural networks." Journal of chemical information and modeling 60.6 (2020): 2791-2802.<br>
 				Francoeur, Paul G., et al. "Three-dimensional convolutional neural networks and a cross-docked data set for structure-based drug design." Journal of chemical information and modeling 60.9 (2020): 4200-4215.
 			</p>
         </section>
+
+		<section data-state="">
+			<div class="chapter_break_container">
+				<p class="chapter_break">Progress and future work</p>
+				<img title="Needed for the ">
+			</div>
+		</section>
 
 		<section data-state="slide_KeyChildModule">
 			<p class="slide-title">Development of key subsystems</p>
@@ -803,6 +815,9 @@
 				<p class="highlight_style1" style="margin-left: -20px !important;">ACGui Developers: </p>
 				<li>Fabian Radler</li>
 				<li>Cassiano Langini</li>
+				<p class="highlight_style1" style="margin-left: -20px !important;">Computationalists:</p>
+				<li>Francesco Cocina</li>
+				<li>Julian Widmer</li>
 				<p class="highlight_style1" style="margin-left: -20px !important;">All the members in Caflisch group</p>
             </ul>
 <!--            <div class="slide_content_style1" style="width:50%">-->
@@ -1123,7 +1138,7 @@
 								meshobject.rotation.y += time*0.004;
 								posit = meshobject.position
 								if (c==1){
-									meshobject.material.color = new THREE.Color(0x71EFA3);
+									meshobject.material.color = new THREE.Color(0xDA5C53);
 									meshobject.material.transparent = true;
 									meshobject.material.opacity = 0.75;
 								}
@@ -1211,24 +1226,24 @@
                             color:'#adf7d1',
                             opacity:0.65
                         })
-                        const centers = [
-                            [34.88775634765625, 38.64504623413086, 18.944740295410156], [30.713611602783203, 42.00475311279297, 19.096406936645508], [28.294567108154297, 44.30536651611328, 17.057537078857422],
-                            [27.101287841796875, 45.99188232421875, 21.745433807373047], [21.747516632080078, 46.85906219482422, 26.61472511291504], [19.334928512573242, 44.54450225830078, 35.28935623168945],
-                            [16.974706649780273, 41.76900100708008, 31.347522735595703], [17.396854400634766, 37.726806640625, 27.266767501831055]
-                        ]
-                        const block_ls = [6,6,6]
-                        for (var i=0; i < centers.length; i++){
-                            viewer.addBox({center:{x:centers[i][0], y:centers[i][1] ,z:centers[i][2]},
-                                dimensions: {w:block_ls[0], h:block_ls[1], d:block_ls[2]},
-                                color:'#8971d0',
-                                opacity:1,
-                            })
-                            viewer.addBox({center:{x:centers[i][0], y:centers[i][1] ,z:centers[i][2]},
-                                dimensions: {w:block_ls[0]+0.5, h:block_ls[1]+0.5, d:block_ls[2]+0.5},
-                                color:'black',
-                                opacity:0.6
-                            })
-                        }
+                        // const centers = [
+                        //     [34.88775634765625, 38.64504623413086, 18.944740295410156], [30.713611602783203, 42.00475311279297, 19.096406936645508], [28.294567108154297, 44.30536651611328, 17.057537078857422],
+                        //     [27.101287841796875, 45.99188232421875, 21.745433807373047], [21.747516632080078, 46.85906219482422, 26.61472511291504], [19.334928512573242, 44.54450225830078, 35.28935623168945],
+                        //     [16.974706649780273, 41.76900100708008, 31.347522735595703], [17.396854400634766, 37.726806640625, 27.266767501831055]
+                        // ]
+                        // const block_ls = [6,6,6]
+                        // for (var i=0; i < centers.length; i++){
+                        //     viewer.addBox({center:{x:centers[i][0], y:centers[i][1] ,z:centers[i][2]},
+                        //         dimensions: {w:block_ls[0], h:block_ls[1], d:block_ls[2]},
+                        //         color:'#8971d0',
+                        //         opacity:1,
+                        //     })
+                        //     viewer.addBox({center:{x:centers[i][0], y:centers[i][1] ,z:centers[i][2]},
+                        //         dimensions: {w:block_ls[0]+0.5, h:block_ls[1]+0.5, d:block_ls[2]+0.5},
+                        //         color:'black',
+                        //         opacity:0.6
+                        //     })
+                        // }
                         viewer.rotate(195, {x: 0, y: 1, z: 0});
                         viewer.render();
                         window.voxel_box_set = true;
@@ -1336,6 +1351,7 @@
 						const renderer = ret[1];
 						const camera = ret[2];
 						const light = ret[3];
+
 						var unitoffset = 12
 						addPLYtoStage(repo_url + "final_plys/tmp5llzxuex_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,0 ,0])
 						addPLYtoStage(repo_url + "final_plys/tmp5t735ia__final.ply", ret[0], ret[1], ret[2], ret[3], [unitoffset,0 ,0])
@@ -1355,24 +1371,11 @@
 						addPLYtoStage(repo_url + "final_plys/tmp42l6jg8w_final.ply", ret[0], ret[1], ret[2], ret[3], [-unitoffset,2*unitoffset, 0])
 						addPLYtoStage(repo_url + "final_plys/tmpq5d3h7a3_final.ply", ret[0], ret[1], ret[2], ret[3], [2*unitoffset, 2*unitoffset, 0])
 
+						camera.position.set(0,0,40)
+
 						function animate() {
 							requestAnimationFrame(animate);
-							const time = (performance.now() * 0.0005) % 3 + 0.5;
-							let c = 0;
-							scene.traverse(function(meshobject) {
-								if (meshobject instanceof THREE.Mesh) {
-									meshobject.rotation.z = 0.05;
-									meshobject.rotation.y += time*0.004;
-
-									if (c==1){
-										meshobject.material.color = new THREE.Color(0x71EFA3);
-										meshobject.material.transparent = true;
-										meshobject.material.opacity = 0.75;
-										// console.log("====>", meshobject.position.x, meshobject.position.y, meshobject.position.z)
-									}
-									c+=1
-								}
-							});
+							camera.lookAt(unitoffset/2,unitoffset/2,0)
 							renderer.render(scene, camera);
 						}
 						animate()
@@ -1455,7 +1458,7 @@
         var found_chapterbreakimg = event.currentSlide.querySelector( '.chapter_break_container img' );
         if ( found_chapterbreak && found_chapterbreakimg.src.slice(0,4) !== "data") {
             found_chapterbreakimg.src = image_section_break
-            found_chapterbreakimg.style.zIndex = -10;
+            found_chapterbreakimg.style.zIndex = -100;
             found_chapterbreakimg.style.width = '75%';
             found_chapterbreakimg.style.position = "absolute"
             found_chapterbreakimg.style.transform = 'rotate(-30deg)';

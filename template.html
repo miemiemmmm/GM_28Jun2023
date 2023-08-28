@@ -348,9 +348,30 @@
 </div>
 
 <script>
-    // Define the function to load ply file
+    ////////////////////////////////////////////////////
+    ////// Global Variables and On-load Actions ////////
+    ////////////////////////////////////////////////////
+    const github_auth = {
+        Authorization: "Bearer GITHUB_FINE_GRAINED_TOKEN",
+        Accept: "application/vnd.github+object",
+    };
+
+    const repo_url = "https://api.github.com/repos/miemiemmmm/HPPT/contents/";
+
+    // Whether or not to PRELOAD all images from the given Github Repo
+    const PRELOAD_FIGURES = true
+	var FIGURES = {}
+	if (PRELOAD_FIGURES == true){
+		getImagesFromRepo()
+	}
+
+    const scene_bgcolor = "FFF9DE";
+
+
     async function getGithubContents(url){
-        // Fetch file from Github API
+        /////////////////////////////////////////////////
+        // Fetch file from Github via content API
+        /////////////////////////////////////////////////
         ret = await fetch(url, {headers: github_auth});
         data = await ret.json();
         if (data.hasOwnProperty("content") && data.content.length > 0){
@@ -371,7 +392,9 @@
     }
 
     async function loadImageBase64(fileurl) {
-        // Load image from URL and return base64 encoded image
+        /////////////////////////////////////////////////
+        // Read image from URL encoded via base64
+        /////////////////////////////////////////////////
         try {
             const data = await getGithubContents(fileurl);
             let dataUriPrefix;
@@ -409,6 +432,28 @@
             return
         }
     }
+
+    async function getImagesFromRepo() {
+        /////////////////////////////////////////////////
+        // Get all images from the repo
+        // Lazy mode: Automatically get all images from the repo
+        /////////////////////////////////////////////////
+		try {
+			// Get the contents of the repo
+			let response = await fetch(repo_url, {headers: github_auth});
+			let data = await response.json();
+			// Iterate over each file in the repo: 1. Check image; 2. Download and store the image in base64 format
+			for (let file of data) {
+				if (file.name.endsWith('.png') || file.name.endsWith('.jpg') || file.name.endsWith('.jpeg') || file.name.endsWith('.gif')) {
+					filename = file.name.split('?')[0].split("/")[file.name.split('?')[0].split("/").length-1];
+					FIGURES[filename] = await loadImageBase64(repo_url + filename);
+				}
+			}
+		} catch (error) {
+			console.error("An error occurred:", error);
+		}
+	}
+
 
     function loadPLYMesh(plycontent, scene, camera, light) {
         // Load PLY file from base64 encoded string and return mesh
@@ -561,16 +606,7 @@
 
 
 
-    /////////////////////////////////////////////
-    ////////// Set up global variables //////////
-    /////////////////////////////////////////////
-    const scene_bgcolor = "FFF9DE";
-    const github_auth = {
-        Authorization: "Bearer GITHUB_FINE_GRAINED_TOKEN",
-        Accept: "application/vnd.github+object",
-    };
 
-    const repo_url = "https://api.github.com/repos/GITHUB_USER_NAME/GITHUB_REPO_NAME/contents/";
 
     // Set up the picuture of the first slide
     setupImage("greeting_bgimage", repo_url+"Snap_bfl1_bh3.png")
